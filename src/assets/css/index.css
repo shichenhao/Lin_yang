@@ -1,0 +1,445 @@
+.banner{
+    width: 7.2rem;
+    height:4.7rem;
+}
+
+.indexBanner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: .3rem;
+    padding: .5rem 1.1rem;
+}
+
+.indexBanner a{
+    width: 50%;
+    height: 2.3rem;
+    padding: .2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #005b53;
+    border-left: 2px solid #cccccd;
+    border-top: 2px solid #cccccd;
+}
+
+.indexBanner a:nth-child(1),.indexBanner a:nth-child(3){
+    border-left: 0 none;
+}
+.indexBanner a:nth-child(1),.indexBanner a:nth-child(2){
+    border-top: 0 none;
+}
+
+.indexBanner a img{
+    display: block;
+    width: 1.5rem;
+    height: 1.42rem;
+}
+
+.indexLane{
+    text-align: center;
+}
+
+.indexLane img{
+    width: 6.4rem;
+    height: 1.2rem;
+}
+
+/*虫草*/
+
+.modelBanner img{
+    width: 100%;
+}
+
+.shoppingList{
+    padding:0 .3rem;
+    background: #fff;
+}
+
+.shoppingItem{
+    border-bottom: 2px solid #e4e4e4;
+    padding: .2rem .5rem .2rem 0;
+    height: 2.3rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.shoppingItem img{
+    width: 3.1rem;
+    height: 2rem;
+    margin-right: .2rem;
+}
+
+.shoppingItem:last-child{
+    border: 0 none;
+}
+
+.shoppingItem b{
+    display: block;
+    width: 100%;
+    color: #d5b345;
+    font-size: .3rem;
+}
+.shoppingItem p{
+    font-size: .2rem;
+    color: #acadad;
+    padding: .1rem 0 .4rem;
+}
+.shoppingItem span{
+    font-size: .24rem;
+    font-weight: bold;
+}
+
+.shoppingAdd,.shoppingRemove{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .3rem;
+    width: .44rem;
+    height: .44rem;
+    border-radius: .44rem;
+    background: #005b53;
+    color: #fff;
+    position: absolute;
+    right: .2rem;
+    bottom: .3rem;
+}
+.shoppingRemove{
+    background: #fff;
+    border: 1px solid #005b53;
+}
+
+.shoppingAdd:before,.shoppingRemove:before{
+    content: '';
+    position: absolute;
+    width: .2rem;
+    height: 1px;
+    left: 50%;
+    top: 50%;
+    margin-left: -.1rem;
+    margin-top: -1px;
+    background-color: #fff;
+}
+.shoppingRemove:before{
+    background-color: #005b53;
+}
+.shoppingAdd:after{
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: .2rem;
+    left: 50%;
+    top: 50%;
+    margin-left: -1px;
+    margin-top: -.1rem;
+    background-color: #fff;
+}
+
+.cartBox{
+    padding: 2.6rem 0 1.3rem;
+    background: url(../images/cart.png) no-repeat #efefef;
+    background-size: 100%;
+}
+
+.cartBox .shoppingList{
+    padding: 0 .3rem;
+    background: none;
+}
+
+.cartBox .shoppingItem{
+    position: relative;
+    padding-left: .8rem;
+    background: #fff;
+    border-radius: .2rem;
+    margin-bottom: .2rem;
+    box-shadow: 0 0 .05rem #e2e3e3;
+}
+
+.cartBox .shoppingItem .choice{
+    position: absolute;
+    left: .2rem;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+.cartBox .cartNumber{
+    position: absolute;
+    right: .2rem;
+    bottom: .32rem;
+}
+
+.cartResult{
+    position: fixed;
+    width: 100%;
+    height:1.15rem;
+    line-height: 1.15rem;
+    color: #525050;
+    font-size: .3rem;
+    padding-left: .7rem;
+    background: #fff;
+    left: 0;
+    bottom: 55px;
+}
+
+.cartResult b{
+    font-size: .34rem;
+}
+
+.cartResult a{
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    height:1.15rem;
+    width: 2.6rem;
+    text-align: center;
+    color: #fff;
+    font-size: .4rem;
+    background: #005b53;
+}
+
+.orderBox{
+    line-height: .5rem;
+    font-size: .3rem;
+    color: #727171;
+}
+
+.address{
+    background: #fff;
+    padding: .3rem 0;
+    margin-bottom: .25rem;
+}
+
+.address p{
+    padding: 0 .6rem;
+}
+
+.orderInfo{
+    padding-bottom: 0;
+}
+
+.orderInfo p{
+    padding-bottom: .2rem;
+}
+
+.orderInfoItem{
+    display: flex;
+    padding: 0 .6rem;
+    line-height: .4rem;
+}
+
+.orderInfoItem span:nth-child(1){
+    width: 3.3rem;
+}
+.orderInfoItem span:nth-child(2){
+    width: 1.6rem;
+}
+.orderInfoItem b{
+    flex: 1;
+    font-weight: 400;
+    text-align: right;
+}
+
+.orderInfoResult{
+    border-top: 2px solid #e7e7e8;
+    margin: .2rem .2rem 0;
+    line-height: 1rem;
+    text-align: right;
+    padding-right: .4rem;
+}
+
+.orderInfoResult b{
+    font-size: .32rem;
+}
+
+
+.agreement{
+    padding: .1rem .6rem;
+    color: #898989;
+}
+
+.agreement a{
+    color: #a2d7d4;
+}
+
+/*体验*/
+
+.experienceBox{
+    padding: .24rem .78rem;
+    background: #fff;
+}
+
+.experienceBox{
+    margin-bottom: .35rem;
+}
+
+.experienceBox h2{
+    font-weight: 400;
+    text-align: center;
+    font-size: .36rem;
+    color: #595656;
+    position: relative;
+    margin: 0 0 .6rem;
+}
+
+.experienceBox h2:before{
+    content: '';
+    width: 3.6rem;
+    height: 1px;
+    background: #d6d6d7;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.experienceBox h2 span{
+    display: inline-block;
+    padding:0 .1rem;
+    background: #fff;
+    position: relative;
+}
+
+.experienceCont{
+    font-size: .28rem;
+    color: #727171;
+}
+
+.experienceCont p{
+    font-size: .26rem;
+    line-height: .46rem;
+}
+
+.experienceCont1{
+    padding: 0 .3rem;
+}
+
+.experienceCont1 div{
+    padding: .35rem 0;
+
+}
+.experienceCont1 div span{
+    padding: 0 .14rem;
+    font-size: .2rem;
+    line-height: .28rem;
+    display: block;
+    position: relative;
+}
+
+.experienceCont1 div span:after{
+    position: absolute;
+    left: 0;
+    top: .11rem;
+    content: '';
+    display: block;
+    width: .06rem;
+    height: .06rem;
+    border-radius: .06rem;
+    background: #727171;
+}
+
+.experienceCont ul{
+    margin-bottom: .2rem;
+}
+
+.experienceCont ul li{
+    height: 1rem;
+    border-bottom:1px solid #d6d6d7;
+    display: flex;
+    align-items: center;
+}
+
+.experienceCont ul li input{
+    border: 0 none;;
+    font-size: .28rem;
+    margin:0 0 0 .4rem;
+    padding-top: .05rem;
+    color: #444;
+}
+
+.experienceCont h4{
+    font-size: .3rem;
+    font-weight: 400;
+    padding: .2rem 0 0;
+}
+
+.checkboxList{
+    margin-left: -20px;
+}
+
+.experienceAgreement{
+    padding: .2rem 0 0;
+    font-size: .2rem;
+    color: #999;
+}
+
+.experienceAgreement a{
+    color: #a2d7d4;
+}
+
+/*extension*/
+.extension{
+    width:7.2rem;
+    height:10.56rem;
+    background:url(../images/extension_bg.jpg) no-repeat;
+    background-size:100%;
+    padding-top:2.45rem;
+}
+
+.extensionBox{
+    width:6.22rem;
+    height:7.7rem;
+    background:#fff;
+    border-radius:.2rem;
+    margin:0 auto;
+    padding:0.28rem 0.55rem 0;
+}
+.extension h2{
+    font-size:0.34rem;
+    color: #bf9d5b;
+    text-align:center;
+}
+.extension h2 span{
+    display:block;
+    font-size:0.26rem;
+    color:#727171;
+    padding-bottom:0.1rem;
+}
+.ewm{
+    height:3rem;
+    text-align:center;
+    position:relative;
+}
+.ewm span{
+    position:absolute;
+    left:0;
+    bottom:0.3rem;
+    width:100%;
+    color:#bf9d5b;
+}
+.extensionBox p{
+    font-size:0.22rem;
+    color:#7b7a7a;
+    padding-left:0.24rem;
+    position:relative;
+    line-height:0.3rem;
+    padding-bottom:0.05rem;
+}
+.extensionBox p span{
+    position:absolute;
+    left:0;
+    top:0;
+}
+
+.extensionBox i{
+    color:#7b7a7a;
+    font-size:0.14rem;
+}
+
+
