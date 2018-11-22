@@ -49,7 +49,7 @@
                 </div>
                 <div class="agreement">
                     <i class="choice">
-                        <input type="checkbox" id="radio">
+                        <input type="checkbox" v-model="isRadio" id="radio">
                         <label for="radio"></label>
                         我已阅读并同意<a href="#">《支付协议》</a>
                     </i>
@@ -59,12 +59,13 @@
         <div class="cartResult">
             应付合计
             <b>￥100</b>
-            <a>提交订单</a>
+            <a @click="submit">提交订单</a>
         </div>
     </div>
 </template>
 <script>
   import Header from '@/components/common/Header.vue';
+  import { Toast } from 'mint-ui';
   export default {
       name: 'cart',
       components:{
@@ -72,9 +73,32 @@
       },
       data () {
           return {
+            isRadio:false,
+            param:{
+              "cellphone":"13521389588",
+              "name":"test",
+              "address":"北京",
+              "orderinfo":"特惠装10盒",
+              "level":"5",
+              "totalprice":"3000",
+              "uid":"700"
+            }
           }
       },
       methods:{
+        submit() {
+          if(this.isRadio){
+              this.$axios("MemberOrder", this.param).then((res) => {
+                if(res.result){
+                  Toast('下单成功!');
+                  return false
+                  window.location.href= res.payurl
+                }
+              })
+          }else{
+            Toast('请同意支付协议!')
+          }
+        },
 
       },
       mounted(){

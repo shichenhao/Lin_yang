@@ -4,10 +4,10 @@
             <div class="userImg">
                 <img src="../../assets/images/head.png" />
                 <img class="userLogo" src="../../assets/images/user-logo.png" alt="">
-                <div v-show="false">
+                <router-link to="/login" v-show="!isLogin">
                     立即登录
-                </div>
-                <div>
+                </router-link>
+                <div v-show="isLogin">
                     张先生 <span>5S</span>
                     <p>ID:ST000001</p>
                 </div>
@@ -57,6 +57,7 @@
       },
       data () {
           return {
+            isLogin:localStorage.getItem('token')
           }
       },
       methods:{

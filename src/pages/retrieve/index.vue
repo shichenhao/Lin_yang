@@ -11,11 +11,11 @@
                     <input type="password" v-model="param.password" placeholder="请输入密码">
                 </li>
                 <li>
-                    <a class="btn" @click="login">登　　录</a>
+                    <a class="btn" @click="login">找回密码</a>
                 </li>
                 <li class="loginDown">
+                    <router-link to="/login">立即登录</router-link>
                     <router-link to="/register">立即注册</router-link>
-                    <router-link to="/retrieve">忘记密码？</router-link>
                 </li>
             </ul>
             <div class="loginBottom"></div>
@@ -27,7 +27,7 @@
   import { Toast } from 'mint-ui';
 
   export default {
-    name: 'message',
+    name: 'retrieve',
     components: {
       Header,
     },
@@ -35,22 +35,12 @@
       return {
         param: {
           cellphone: null,
-          password: null,
         }
       }
     },
     methods: {
       login() {
-        this.$axios("Login", this.param).then((res) => {
-          if(res.result){
-            Toast('登录成功!');
-            localStorage.setItem('token',res.token);
-            this.$router.push('/')
-          }
-        })
-      },
-      getImg() {
-        this.$axios("GetAuthCode", {}).then((res) => {
+        this.$axios("SendSMSCode", this.param).then((res) => {
           if(res.result){
           }
         })
@@ -58,7 +48,7 @@
 
     },
     mounted() {
-        this.getImg();
+
     }
   }
 </script>

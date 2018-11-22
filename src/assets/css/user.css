@@ -102,6 +102,10 @@
     position: relative;
 }
 
+.userImg a{
+    color: #fff;
+}
+
 .userImg img{
     width: 1.1rem;
     height: 1.1rem;

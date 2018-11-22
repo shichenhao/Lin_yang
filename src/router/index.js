@@ -6,6 +6,7 @@ import Cart from '@/pages/cart/'
 import ConfirmOrder from '@/pages/cart/confirmOrder/'
 import Experience from '@/pages/experience/'
 import Login from '@/pages/login/'
+import Retrieve from '@/pages/retrieve/'
 import Register from '@/pages/register/'
 import User from '@/pages/user/'
 import UserMessage from '@/pages/user/message'
@@ -55,6 +56,14 @@ export default new Router({
           component: Login,
           meta: {
               title: '登录',
+              navShow: false
+          }
+      },
+      {
+          path: '/retrieve',
+          component: Retrieve,
+          meta: {
+              title: '找回密码',
               navShow: false
           }
       },

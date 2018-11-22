@@ -49,6 +49,7 @@
           this.$axios("SaleOrder", this.param).then((res) => {
             if(res.result){
               Toast('下单成功!');
+              window.location.href= res.payurl
             }
           })
         },

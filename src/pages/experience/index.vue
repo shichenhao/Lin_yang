@@ -52,7 +52,7 @@
                     </li>
                     <li>
                         <span>联系电话</span>
-                        <input type="text" placeholder="填写申请人手机号码" />
+                        <input type="text" v-model="param.cellphone" placeholder="填写申请人手机号码" />
                     </li>
                     <li>
                         <span>收货地址</span>
@@ -87,7 +87,7 @@
                 <h4>1.您期望调整的问题是否有改善？</h4>
                 <div class="checkboxList checkboxList2">
                     <mt-radio
-                            v-model="value2"
+                            v-model="value3"
                             :options="options3">
                     </mt-radio>
                 </div>
@@ -95,7 +95,7 @@
                 <div class="checkboxList">
                     <div class="checkboxList2">
                         <mt-radio
-                                v-model="value2"
+                                v-model="value4"
                                 :options="options4">
                         </mt-radio>
                     </div>
@@ -104,7 +104,7 @@
                 <div class="checkboxList">
                     <div class="checkboxList2">
                         <mt-radio
-                                v-model="value2"
+                                v-model="value5"
                                 :options="options3">
                         </mt-radio>
                     </div>
@@ -147,8 +147,11 @@
                 uid:"700",
                 feedback:"反馈信息"
               },
-              value:'',
-              value2:'',
+              value:'活动价格给力',
+              value2:'失眠',
+              value3:'是',
+              value4:'失眠',
+              value5:'是',
               gender:[
                   {
                       label: '男',
@@ -162,68 +165,75 @@
               options:[
                   {
                       label: '活动价格给力',
-                      value: 'A',
+                      value: '活动价格给力',
                   },
                   {
                       label: '朋友强烈推荐',
-                      value: 'B',
+                      value: '朋友强烈推荐',
                   },
                   {
                       label: '为改善健康状况做尝试',
-                      value: 'C',
+                      value: '为改善健康状况做尝试',
                   },
                   {
                       label: '希望成为代理商',
-                      value: 'D',
+                      value: '希望成为代理商',
                   }
               ],
               options2:[
                   {
                       label: '失眠',
-                      value: 'A',
+                      value: '失眠',
                   },
                   {
                       label: '肾虚',
-                      value: 'B',
+                      value: '肾虚',
                   },
                   {
                       label: '便秘',
-                      value: 'C',
+                      value: '便秘',
                   },
                   {
                       label: '吸烟',
-                      value: 'D',
+                      value: '吸烟',
                   }
               ],
               options3:[
                   {
                       label: '是',
-                      value: 'A',
+                      value: '是',
                   },
                   {
                       label: '否',
-                      value: 'B',
+                      value: '否',
                   }
               ],
               options4:[
                   {
                       label: '失眠',
-                      value: 'A',
+                      value: '失眠',
                   },
                   {
                       label: '肾虚',
-                      value: 'B',
+                      value: '肾虚',
                   },
                   {
                       label: '便秘',
-                      value: 'C',
+                      value: '便秘',
                   }
               ]
           }
       },
       methods:{
         submit() {
+          let feedback = [];
+          feedback.push(this.value,this.value2)
+          this.param.feedback = feedback.toString()
           this.$axios("TryOrder", this.param).then((res) => {
+            if(res.result){
+              Toast('下单成功!');
+              window.location.href= res.payurl
+            }
           })
         },
         bathdayShow(){
@@ -240,6 +250,9 @@
 </script>
 
 <style>
+    .mint-radiolist-label{
+        padding: 0;
+    }
     .checkboxList2 .mint-radiolist{
         padding: .1rem 0;
         display: flex;

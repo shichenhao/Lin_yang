@@ -59,20 +59,16 @@
       return {
         levelList:[
           {
-            val:'1',
-            text:'一级代理'
-          },
-          {
-            val:'2',
-            text:'二级代理'
-          },
-          {
             val:'3',
             text:'三级代理'
           },
           {
             val:'4',
             text:'四级代理'
+          },
+          {
+            val:'5',
+            text:'五级代理'
           },
         ],
         check:{

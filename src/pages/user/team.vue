@@ -21,7 +21,6 @@
           return {
             param:{
               UID:"700",
-              cellphone:"13521389588",
             }
           }
       },
