@@ -12,6 +12,9 @@ import User from '@/pages/user/'
 import UserMessage from '@/pages/user/message'
 import UserMoney from '@/pages/user/money'
 import UserTeam from '@/pages/user/team'
+import UserToker from '@/pages/user/toker'
+import UserAddress from '@/pages/user/address'
+import UserAddressAdd from '@/pages/user/addressAdd'
 import Extension from '@/pages/extension'
 import News from '@/pages/news'
 
@@ -88,6 +91,22 @@ export default new Router({
           component: UserMessage,
           meta: {
               title: '消息',
+              navShow: true
+          }
+      },
+      {
+          path: '/user/address',
+          component: UserAddress,
+          meta: {
+              title: '我的地址',
+              navShow: false
+          }
+      },
+      {
+          path: '/user/address/add',
+          component: UserAddressAdd,
+          meta: {
+              title: '我的地址',
               navShow: false
           }
       },
@@ -104,6 +123,14 @@ export default new Router({
           component: UserTeam,
           meta: {
               title: '我的团队',
+              navShow: false
+          }
+      },
+      {
+          path: '/user/toker',
+          component: UserToker,
+          meta: {
+              title: '拓客信息',
               navShow: false
           }
       },

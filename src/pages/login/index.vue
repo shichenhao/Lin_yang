@@ -15,7 +15,7 @@
                 </li>
                 <li class="loginDown">
                     <router-link to="/register">立即注册</router-link>
-                    <router-link to="/retrieve">忘记密码？</router-link>
+                    <router-link v-if="false" to="/retrieve">忘记密码？</router-link>
                 </li>
             </ul>
             <div class="loginBottom"></div>
@@ -45,7 +45,16 @@
           if(res.result){
             Toast('登录成功!');
             localStorage.setItem('token',res.token);
+            this.getUserInfo();
             this.$router.push('/')
+          }
+        })
+      },
+      getUserInfo(){ // 获取用户信息
+        this.$axios("GetMemberInfo", {cellphone:this.param.cellphone}).then((res) => {
+          if(res.result){
+            localStorage.setItem('userInfo',JSON.stringify(res))
+            //this.$router.push('/')
           }
         })
       },

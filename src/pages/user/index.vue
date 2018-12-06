@@ -8,12 +8,16 @@
                     立即登录
                 </router-link>
                 <div v-show="isLogin">
-                    张先生 <span>5S</span>
-                    <p>ID:ST000001</p>
+                    张先生 <span>{{userInfo.level}}S</span>
+                    <p>ID:{{userInfo.UID}}</p>
                 </div>
             </div>
             <div class="userNav">
                 <ul>
+                    <li @click="routerPath('/user/address')">
+                        <img src="../../assets/images/user-icon1.png" />
+                        我的地址
+                    </li>
                     <li @click="routerPath('/user/info')">
                         <img src="../../assets/images/user-icon1.png" />
                         个人资料
@@ -40,8 +44,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="indexLane">
-                <router-link to="">
+            <div class="indexLane" v-if="isLogin">
+                <router-link to="/extension">
                     <img src='../../assets/images/index-banner.png' alt="">
                 </router-link>
             </div>
@@ -57,16 +61,35 @@
       },
       data () {
           return {
-            isLogin:localStorage.getItem('token')
+            userInfo:{},
+            isLogin:localStorage.getItem('token') || false,
+            param:{
+              cellphone:localStorage.getItem('userInfo') && JSON.parse(localStorage.getItem('userInfo')).cellphone,
+              token:localStorage.getItem('token') || ''
+            }
           }
       },
       methods:{
-          routerPath(url) {
-              this.$router.push(url)
+        routerPath(url) {
+          if(this.isLogin){
+            this.$router.push(url)
+          }else{
+            this.$router.push('/login')
           }
+        },
+        getInit(){
+          this.$axios("GetMemberInfo", this.param).then((res) => {
+            if(res.result){
+              this.userInfo = res
+              //this.$router.push('/')
+            }
+          })
+        },
       },
       mounted(){
-
+        if(this.isLogin){
+          this.getInit();
+        }
       }
   }
 </script>

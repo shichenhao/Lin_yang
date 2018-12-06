@@ -39,7 +39,7 @@
                 </li>
                 <li class="loginDown">
                     已有账号？
-                    <span>立即登录</span>
+                    <router-link to="/login">立即登录</router-link>
                 </li>
             </ul>
             <div class="loginBottom"></div>
@@ -79,7 +79,7 @@
           key: 'Regist',
           cellphone: null,
           password: null,
-          level:'1',
+          level:'3',
         }
       }
     },

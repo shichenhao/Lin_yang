@@ -68,9 +68,9 @@
 }
 
 .shoppingItem img{
-    width: 3.1rem;
+    width: 3rem;
     height: 2rem;
-    margin-right: .2rem;
+    margin-right: .15rem;
 }
 
 .shoppingItem:last-child{
@@ -91,6 +91,8 @@
 .shoppingItem span{
     font-size: .24rem;
     font-weight: bold;
+    position: absolute;
+    bottom: .12rem;
 }
 
 .shoppingAdd,.shoppingRemove{
@@ -140,7 +142,7 @@
 
 .cartBox{
     padding: 2.6rem 0 1.3rem;
-    background: url(../images/cart.png) no-repeat #efefef;
+    background: url(../images/cart.png) no-repeat #f5f5f5;
     background-size: 100%;
 }
 
@@ -169,7 +171,7 @@
 .cartBox .cartNumber{
     position: absolute;
     right: .2rem;
-    bottom: .32rem;
+    bottom: .1rem;
 }
 
 .cartResult{
@@ -441,5 +443,71 @@
     color:#7b7a7a;
     font-size:0.14rem;
 }
+
+
+
+.newsBanner img{
+    width: 100%;
+    display: block;
+}
+
+.newsBox{
+    background: #eee;
+    display: flex;
+}
+
+.newsLeft{
+    width: 1.6rem;
+    text-align: center;
+}
+
+.newsLeft span{
+    display: block;
+    line-height: .8rem;
+    text-align: center;
+    font-size: .16rem;
+    border-bottom: 2px solid #e0e0e0;
+    font-weight: bold;
+    color: #7d7d7d;
+}
+
+.newsLeft span.active{
+    background: #fff;
+    color: #005b52;
+}
+
+
+
+.newsRight{
+    flex: 1;
+    background: #fff;
+    padding-left: .3rem;
+}
+
+.newsTit{
+    height: .8rem;
+    line-height: .8rem;
+    font-size: .14rem;
+    color: #005b52;
+    font-weight: 700;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.newsItem{
+    border-bottom:1px solid #e0e0e0;
+    padding: .2rem 0;
+    color: #666;
+}
+
+.newsItem h2{
+    font-size: .14rem;
+    font-weight: 400;
+}
+
+.newsItem p{
+    font-size: .12rem;
+    padding: .2rem 0 0;
+}
+
 
 

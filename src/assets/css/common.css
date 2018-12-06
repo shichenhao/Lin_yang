@@ -114,8 +114,8 @@ table {
 .choice label { position: absolute; left: 0px; top: 0; height: .44rem;  }
 .choice label:before { content: ''; position: absolute; left: 0px; top: 0; width: .44rem; height: .44rem; border: 1px solid #004c44; border-radius: 50%; transition: all 0.3s ease; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; }
 .choice label:after { content: ''; position: absolute; left: .18rem; top: .08rem; width: .1rem; height: .2rem; border: 0; border-right: 2px solid #fff; border-bottom: 2px solid #fff; background: #fff; transform: rotate(45deg); -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); transition: all 0.3s ease; -webkit-transition: all 0.3s ease; -moz-transition: all 0.3s ease; }
-.choice input[type='checkbox']:checked + label:before,.choice input[type='radio']:checked + label:before { background: #005b53; border-color: #4cd764; }
-.choice input[type='checkbox']:checked + label:after,.choice input[type='radio']:checked + label:after { background: #005b53; }
+.choice .isCheck:before { background: #005b53; border-color: #4cd764; }
+.choice .isCheck:after { background: #005b53; }
 
 
 
@@ -182,4 +182,30 @@ table {
     border-radius: .1rem;
     color: #fff;
     background: #005b53;
+}
+
+.containerBn{
+    bottom:0;
+}
+
+.contentPop{
+    font-size: .14rem;
+    padding: .3rem .5rem;
+    line-height: 180%;
+    background: #fff;
+    position: fixed;
+    top:0;
+    right:0;
+    bottom: 0;
+    left:0;
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.contentClose{
+    position: absolute;
+    font-size: .5rem;
+    color: #666;
+    right: .2rem;
+    top: .3rem;
 }

@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <Header title="我的团队"></Header>
+        <Header title="拓客信息"></Header>
         <div class="teamBox">
             <div class="teamItem" v-for="item in list" :key="item.MemberUID">
                 {{item.MemberName}}(ID:{{item.MemberUID}}) 代理级别：4S<br />
@@ -19,13 +19,14 @@
           return {
             list:[],
             param:{
-              token:localStorage.getItem('token')
+              token:localStorage.getItem('token'),
+              level: JSON.parse(localStorage.getItem('userInfo')).level
             }
           }
       },
       methods:{
         getInit() {
-          this.$axios("GetMembers", this.param).then((res) => {
+          this.$axios("GetTryUser", this.param).then((res) => {
             this.list = res.Members
           })
         },

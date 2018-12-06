@@ -10,14 +10,14 @@
                 <h2>
                     <span>我的库值</span>
                 </h2>
-                <p>5000</p>
+                <p>{{ info['库值']}}</p>
             </div>
             <div class="moneyItem">
                 <img src="../../assets/images/money-icon2.png" />
                 <h2>
-                    <span>我的奖金</span>
+                    <span>我的积分</span>
                 </h2>
-                <p>5000</p>
+                <p>{{ info['奖金']}}</p>
             </div>
         </div>
     </div>
@@ -31,13 +31,25 @@
       },
       data () {
           return {
+            info:{},
+            param:{
+              token:localStorage.getItem('token')
+            }
           }
       },
       methods:{
-
+        getInfo(){ // 查询购物车列表
+          this.$axios("GetWealthInfo",this.param).then((res) => {
+            if(res.result){
+              //Toast(res.message);
+              this.info= res
+              //window.location.href= res.payurl
+            }
+          })
+        },
       },
       mounted(){
-
+        this.getInfo();
       }
   }
 </script>

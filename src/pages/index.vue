@@ -25,8 +25,8 @@
                 新闻动态
             </router-link>
         </div>
-        <div class="indexLane">
-            <router-link to="">
+        <div class="indexLane" v-if="isLogin">
+            <router-link to="/extension">
                 <img src='./../assets/images/index-banner.png' alt="">
             </router-link>
         </div>
@@ -42,7 +42,8 @@
     name: 'index',
     data () {
       return {
-          selected:'首页',
+        isLogin:localStorage.getItem('token') || false,
+        selected:'首页',
           // 广告图
           bannerUrl: [
               {

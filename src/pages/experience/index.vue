@@ -5,7 +5,7 @@
             <img src="../../assets/images/experience-banner.png" alt="">
         </div>
         <div class="experienceBox">
-            <a class="btn">立即参与</a>
+            <a class="btn" @click="returnTop">立即参与</a>
         </div>
         <div class="experienceBox">
             <h2>
@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="experienceBox">
+        <div class="experienceBox" id="a1">
             <h2>
                 <span>填写信息</span>
             </h2>
@@ -56,7 +56,7 @@
                     </li>
                     <li>
                         <span>收货地址</span>
-                        <input type="text" v-model="param.address" />
+                        <input type="text" v-model="param.address" placeholder="请填写收货地址" />
                     </li>
                 </ul>
                 <h4>选择试用的原因(勾选)</h4>
@@ -110,13 +110,14 @@
                     </div>
                 </div>
                 <p>我们期望看到您对 S7 </p>
-                <span class="btn">确认上传</span>
+                <span class="btn" @click="feedback">确认反馈</span>
             </div>
         </div>
         <mt-datetime-picker
             ref="picker"
             v-model="pickerVisible"
             type="date"
+            :startDate="new Date('1900-01-01')"
             year-format="{value}年"
             month-format="{value}月"
             date-format="{value}日"
@@ -138,13 +139,13 @@
               param:{
                 bathday:'',
                 gender:null,
-                cellphone:"13521389588",
-                name:"test",
-                address:"北京",
+                cellphone:"",
+                name:"",
+                address:"",
                 orderinfo:"体验装1份",
-                level:"1",
+                level:JSON.parse(localStorage.getItem('userInfo')).level || '',
                 totalprice:"47.7",
-                uid:"700",
+                uid:JSON.parse(localStorage.getItem('userInfo')).UID || '',
                 feedback:"反馈信息"
               },
               value:'活动价格给力',
@@ -225,7 +226,16 @@
           }
       },
       methods:{
+        returnTop(){
+          document.querySelector("#a1").scrollIntoView(true);
+        },
         submit() {
+          if(!this.param.name || !this.param.bathday || !this.param.cellphone || !this.param.gender || !this.param.address){
+            Toast('请填写个人信息!');
+            return false
+          }
+
+
           let feedback = [];
           feedback.push(this.value,this.value2)
           this.param.feedback = feedback.toString()
@@ -233,6 +243,19 @@
             if(res.result){
               Toast('下单成功!');
               window.location.href= res.payurl
+            }
+          })
+        },
+        feedback() {
+          let feedback = [];
+          let params = {}
+          feedback.push(this.value3,this.value4,this.value5)
+          params.feedback = feedback.toString()
+          params.token = localStorage.getItem('token')
+          this.$axios("Feedback", params).then((res) => {
+            if(res.result){
+              Toast('反馈成功!');
+              //window.location.href= res.payurl
             }
           })
         },

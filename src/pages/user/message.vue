@@ -2,13 +2,9 @@
     <div class="container">
         <Header title="消息中心"></Header>
         <div class="messageBox">
-            <div class="messageItem">
-                <h2>阿斯兰的空间撒开了多久<span>2018-09-05 17:50</span></h2>
-                <p>萨里看到静安寺点开链接卡拉胶奥斯卡来可视对讲阿萨德</p>
-            </div>
-            <div class="messageItem">
-                <h2>阿斯兰的空间撒开了多久<span>2018-09-05 17:50</span></h2>
-                <p>萨里看到静安寺点开链接卡拉胶奥斯卡来得及奥斯卡来得及拉可视对讲阿萨德</p>
+            <div class="messageItem" v-for="item in list" :key="item.news_id">
+                <h2>{{item.news_title}}<span></span></h2>
+                <p v-html="item.news_text"></p>
             </div>
         </div>
     </div>
@@ -22,13 +18,25 @@
       },
       data () {
           return {
+            param:{
+              cellphone:JSON.parse(localStorage.getItem('userInfo')).cellphone,
+              token:localStorage.getItem('token')
+            },
+            list:[]
           }
       },
       methods:{
+        getList(){
+          this.$axios("GetMessages", this.param).then((res) => {
+            if(res.result){
+              this.list=res.Members
+            }
+          })
+        }
 
       },
       mounted(){
-
+        this.getList();
       }
   }
 </script>
