@@ -226,6 +226,14 @@
           }
       },
       methods:{
+        formatDate(date) {
+          const y = date.getFullYear()
+          let m = date.getMonth() + 1
+          m = m < 10 ? '0' + m : m
+          let d = date.getDate()
+          d = d < 10 ? ('0' + d) : d
+          return y + '-' + m + '-' + d
+        },
         returnTop(){
           document.querySelector("#a1").scrollIntoView(true);
         },
@@ -263,7 +271,7 @@
           this.$refs.picker.open();
         },
         handleBathday(){
-          this.param.bathday = this.pickerVisible
+          this.param.bathday = this.formatDate(this.pickerVisible)
         }
       },
       mounted(){

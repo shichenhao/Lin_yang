@@ -65,7 +65,22 @@
       },
       methods:{
         check(item){
-          item.isCheck = !item.isCheck
+
+
+          let param = {
+            token:localStorage.getItem('token'),
+            gid:item.id,
+            selected:item.isCheck ? 0 : 1
+          }
+          this.$axios("ChangeCartInfo", param).then((res) => {
+            if(res.result){
+              item.isCheck = !item.isCheck
+              this.getList();
+              //window.location.href= res.payurl
+            }
+          })
+
+
         },
         getList(){ // 查询购物车列表
           this.$axios("GetCartInfo", this.param).then((res) => {
@@ -96,7 +111,18 @@
           if(this.cartList.some(item=>{
             return item.isCheck
             })){
-            console.log(1)
+
+            let param = {
+              token:localStorage.getItem('token'),
+            }
+            this.$axios("CartOrder", param).then((res) => {
+              if(res.result){
+                //window.location.href= res.payurl
+              }
+            })
+
+
+
           }else{
             Toast('请选择要结算的商品');
             return false

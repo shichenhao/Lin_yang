@@ -3,14 +3,17 @@
         <div class="container">
             <Header title="确认订单"></Header>
             <div class="orderBox">
-                <div class="address">
+                <div class="address" v-if="address.user_name" @click="selectAdds">
                     <p>
-                        <span>收货人：订单</span>
-                        手机号：111
+                        <span>收货人：{{address.user_name}}</span>
+                        手机号：{{address.user_phone}}
                     </p>
                     <p>
-                        收货地址：
+                        收货地址：{{address.address_province + address.address_city + address.address_area + address.address_text}}
                     </p>
+                </div>
+                <div class="address" v-else>
+                    <p @click="selectAdds">选择地址</p>
                 </div>
                 <div class="address orderInfo">
                     <p>订单信息</p>
@@ -61,6 +64,21 @@
             <b>￥100</b>
             <a @click="submit">提交订单</a>
         </div>
+        <div class="adsPop" v-if="adsShow">
+            <h2>选择地址</h2>
+            <div class="addressList">
+                <div v-if="!list.length" class="addressNo">
+                    <router-link to="/user/address/add?noId=1">您还没有地址，去创建</router-link>
+                </div>
+                <div class="teamItem" v-for="(item,index) in list" :key="index" @click="checks(item)">
+                    <span>选择</span>
+                    {{item.user_name}}<br />
+                    手机：{{item.user_phone}}<br />
+                    收货地址：{{item.address_province + item.address_city + item.address_area + item.address_text}}
+                </div>
+            </div>
+            <div class="btn" @click="adsShow = false">取消</div>
+        </div>
     </div>
 </template>
 <script>
@@ -73,7 +91,12 @@
       },
       data () {
           return {
+            adsShow:false,
             isRadio:false,
+            list:[],
+            address:{
+
+            },
             param:{
               "cellphone":"13521389588",
               "name":"test",
@@ -82,11 +105,28 @@
               "level":"5",
               "totalprice":"3000",
               "uid":"700"
+            },
+            adsParam:{
+              token:localStorage.getItem('token')
             }
           }
       },
       methods:{
+        selectAdds(){ // 选择收货地址
+          this.adsShow = true
+          this.$axios("GetAddress", this.adsParam).then((res) => {
+            this.list = res.address
+          })
+        },
+        checks(item){
+          this.address = item
+          this.adsShow = false
+        },
         submit() {
+          if(this.address.user_name){
+            Toast('请选择收货地址!')
+            return false
+          }
           if(this.isRadio){
               this.$axios("MemberOrder", this.param).then((res) => {
                 if(res.result){
@@ -129,7 +169,12 @@
         background: #a2d7d4;
         border-width: 1px;
     }
+    .choice input[type='checkbox']:checked + label:after{
+        background: #005b53;
+        border-color: #fff;
+    }
     .choice input[type='checkbox']:checked + label:before{
         border-color: #005b53;
+        background: #005b53;
     }
 </style>

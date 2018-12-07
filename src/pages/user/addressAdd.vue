@@ -6,11 +6,12 @@
             <input type="text" v-model="param.cellphone" placeholder="收货手机号">
             <input type="text" v-model="param.ssq" @click="popupVisible = true" placeholder="收货地址省市区">
             <input type="text" v-model="param.addr" placeholder="收货人地址">
-            <span class="btn" @click="add">添加</span>
+            <span class="btn" v-if="noId" @click="add(true)">添加并到转到购物车</span>
+            <span class="btn" v-else @click="3">添加</span>
         </div>
         <mt-popup
-                v-model="popupVisible"
-                position="bottom">
+            v-model="popupVisible"
+            position="bottom">
             <span class="addPop" @click="checkAddrs">确定</span>
             <mt-picker v-if="popupVisible" :slots="slots" valueKey="label" @change="onValuesChange"></mt-picker>
         </mt-popup>
@@ -27,6 +28,7 @@
       },
       data () {
           return {
+            noId:false,
             popupVisible:false,
             param:{
               token:localStorage.getItem('token'),
@@ -92,7 +94,7 @@
             this.param.ssq = this.param.province +'-'+ this.param.city +'-'+  this.param.area
           }
         },
-        add() {
+        add(type) {
           if(!this.param.name || !this.param.cellphone || !this.param.addr || !this.param.ssq){
             this.Toast('请填写全部收货信息！')
             return false;
@@ -105,7 +107,11 @@
             //this.list = res
             if(res.result){
               this.Toast(res.message)
-              this.$router.go(-1);
+              if(type){
+                this.$router.push('/cart')
+              }else{
+                this.$router.go(-1);
+              }
             }
           })
         },
@@ -114,6 +120,9 @@
         }
       },
       mounted(){
+        if(this.$router.history.current.query.noId){
+          this.noId = true
+        }
       }
   }
 </script>
