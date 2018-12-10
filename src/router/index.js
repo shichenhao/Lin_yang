@@ -8,8 +8,10 @@ import Experience from '@/pages/experience/'
 import Login from '@/pages/login/'
 import Retrieve from '@/pages/retrieve/'
 import Register from '@/pages/register/'
+import Share from '@/pages/share/'
 import User from '@/pages/user/'
 import UserMessage from '@/pages/user/message'
+import UserInfo from '@/pages/user/info'
 import UserMoney from '@/pages/user/money'
 import UserTeam from '@/pages/user/team'
 import UserToker from '@/pages/user/toker'
@@ -103,6 +105,14 @@ export default new Router({
           }
       },
       {
+          path: '/user/info',
+          component: UserInfo,
+          meta: {
+              title: '个人资料',
+              navShow: false
+          }
+      },
+      {
           path: '/user/address/add',
           component: UserAddressAdd,
           meta: {
@@ -138,15 +148,23 @@ export default new Router({
           path: '/experience',
           component: Experience,
           meta: {
-              title: '即可体验',
-              navShow: true
+              title: '即刻体验',
+              navShow: false
+          }
+      },
+      {
+          path: '/share',
+          component: Share,
+          meta: {
+              title: '一封信一份情',
+              navShow: false
           }
       },
     {
       path: '/extension',
       component: Extension,
       meta: {
-        title: '体验推广',
+        title: '注册分享',
         navShow: false
       }
     },
@@ -154,7 +172,7 @@ export default new Router({
       path: '/news',
       component: News,
       meta: {
-        title: '消息中心',
+        title: '新闻中心',
         navShow: false
       }
     },

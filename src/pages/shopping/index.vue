@@ -11,6 +11,7 @@
                     <b>{{order.goodsname}}</b>
                     <p>{{order.goodscomment}}</p>
                     <span>￥{{order.newprice}}</span>
+                    <input type="number" class="text" v-model="order.gcount">
                     <i class="shoppingAdd" @click="subOrder(order)"></i>
                 </div>
             </div>
@@ -34,8 +35,8 @@
                 {"gid":"1","gname":"绿麒麟S7","gcount":"1",'uid':'7'}
             },
             orderParam:{
-              level: JSON.parse(localStorage.getItem('userInfo')).level,
-              token:localStorage.getItem('token'),
+              level: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).level : '0',
+              token:localStorage.getItem('token') || '',
             }
           }
       },
@@ -44,7 +45,7 @@
           let params={
             token:localStorage.getItem('token'),
             gid: order.goodsid,
-            gcount: 1,
+            gcount: order.gcount || 1,
           }
           this.$axios("AddToCart", params).then((res) => {
             if(res.result){
@@ -56,7 +57,10 @@
         getList() {
           this.$axios("GetGoodsInfo", this.orderParam).then((res) => {
             if(res.result){
-              this.list = res.goodsinfo
+              this.list = res.goodsinfo.map(item=>{
+                item.gcount = 1
+                return item
+              })
               //Toast(res.message);
               //window.location.href= res.payurl
             }

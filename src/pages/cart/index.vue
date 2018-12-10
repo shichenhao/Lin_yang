@@ -3,9 +3,9 @@
         <Header title="购物车" :isShow="true"></Header>
         <div class="cartBox">
             <div class="shoppingList">
-                <div class="shoppingItem" v-for="item in cartList" :key="item.gid">
+                <div class="shoppingItem" v-for="item in cartList" :key="item.goodsid">
                     <div class='choice'>
-                        <label @click="check(item)" :class="{isCheck : item.isCheck}"></label>
+                        <label @click="check(item)" :class="{isCheck : item.selected == 1}"></label>
                     </div>
                     <img :src="item.goodspic" alt="">
                     <div>
@@ -13,9 +13,9 @@
                         <p>{{item.goodscomment || cartInfo.content}}</p>
                         <span>￥{{item.newprice || cartInfo.price}}</span>
                         <div class="cartNumber">
-                            <i class="shoppingRemove" @click="updateGoods(item.goodsid,0)"></i>
+                            <i class="shoppingRemove" @click="updateGoods(item,0)"></i>
                             {{item.product_num}}
-                            <i class="shoppingAdd" @click="updateGoods(item.goodsid,1)"></i>
+                            <i class="shoppingAdd" @click="updateGoods(item,1)"></i>
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
         price() {
           let num = null
           this.cartList.forEach(item=>{
-            if(item.isCheck){
+            if(item.selected === '1'){
               num+=(item.newprice * item.product_num).toFixed(2)*1
             }
           })
@@ -65,12 +65,11 @@
       },
       methods:{
         check(item){
-
-
           let param = {
             token:localStorage.getItem('token'),
-            gid:item.id,
-            selected:item.isCheck ? 0 : 1
+            gid:item.goodsid,
+            gcount:0,
+            selected:item.selected == 0 ? 1 : 0
           }
           this.$axios("ChangeCartInfo", param).then((res) => {
             if(res.result){
@@ -95,10 +94,15 @@
           })
         },
         updateGoods(item,type){ //更新数量
+          console.log(item.product_num)
+          if(type === 0 && item.product_num === '1'){
+            return false
+          }
           let param = {
             token:localStorage.getItem('token'),
-            gid:item,
-            gcount:type ? '1' : '-1'
+            gid:item.goodsid,
+            gcount:type ? '1' : '-1',
+            selected:item.selected
           }
           this.$axios("ChangeCartInfo", param).then((res) => {
             if(res.result){
@@ -109,20 +113,11 @@
         },
         setOrder(){
           if(this.cartList.some(item=>{
-            return item.isCheck
+            return item.selected === '1'
             })){
-
-            let param = {
-              token:localStorage.getItem('token'),
-            }
-            this.$axios("CartOrder", param).then((res) => {
-              if(res.result){
-                //window.location.href= res.payurl
-              }
-            })
-
-
-
+            localStorage.setItem('car', JSON.stringify(this.cartList))
+            localStorage.setItem('carPrice', this.price)
+            this.$router.push('/cart/order')
           }else{
             Toast('请选择要结算的商品');
             return false

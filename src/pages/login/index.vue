@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" style="bottom: 0">
         <Header></Header>
         <div class="login">
             <div class="loginLogo"></div>
@@ -45,13 +45,13 @@
           if(res.result){
             Toast('登录成功!');
             localStorage.setItem('token',res.token);
-            this.getUserInfo();
+            this.getUserInfo(res.token);
             this.$router.push('/')
           }
         })
       },
-      getUserInfo(){ // 获取用户信息
-        this.$axios("GetMemberInfo", {cellphone:this.param.cellphone}).then((res) => {
+      getUserInfo(token){ // 获取用户信息
+        this.$axios("GetMemberInfo", {token}).then((res) => {
           if(res.result){
             localStorage.setItem('userInfo',JSON.stringify(res))
             //this.$router.push('/')

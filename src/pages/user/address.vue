@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" style="bottom: 0;">
         <Header title="我的地址"></Header>
         <div class="addressList">
             <div class="teamItem" v-for="(item,index) in list" :key="index">

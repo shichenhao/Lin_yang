@@ -21,8 +21,8 @@
     align-items: center;
     flex-wrap: wrap;
     color: #005b53;
-    border-left: 2px solid #cccccd;
-    border-top: 2px solid #cccccd;
+    border-left: 1px solid #cccccd;
+    border-top: 1px solid #cccccd;
 }
 
 .indexBanner a:nth-child(1),.indexBanner a:nth-child(3){
@@ -67,9 +67,22 @@
     position: relative;
 }
 
+.shoppingItem .text{
+  width: .5rem;
+  height:.3rem;
+  border:1px solid #ccc;
+  border-radius: .1rem;
+  position: absolute;
+  right: .8rem;
+  bottom: .34rem;
+  text-align: center;
+  color: #666;
+  font-size: .2rem;
+}
+
 .shoppingItem img{
     width: 3rem;
-    height: 2rem;
+    /*height: 2rem;*/
     margin-right: .15rem;
 }
 
@@ -141,7 +154,7 @@
 }
 
 .cartBox{
-    padding: 2.6rem 0 1.3rem;
+    padding: 1.8rem 0 1.3rem;
     background: url(../images/cart.png) no-repeat #f5f5f5;
     background-size: 100%;
 }
@@ -281,12 +294,19 @@
 /*体验*/
 
 .experienceBox{
-    padding: .24rem .78rem;
+    padding: .24rem .45rem;
     background: #fff;
 }
 
 .experienceBox{
     margin-bottom: .35rem;
+}
+
+.experienceBox3{
+  margin-bottom: 0;
+}
+.clickNo h2{
+  color: #999;
 }
 
 .experienceBox h2{
@@ -295,7 +315,7 @@
     font-size: .36rem;
     color: #595656;
     position: relative;
-    margin: 0 0 .6rem;
+    margin: 0 0 .3rem;
 }
 
 .experienceBox h2:before{
@@ -304,11 +324,11 @@
     height: 1px;
     background: #d6d6d7;
     position: absolute;
-    top: 0;
+    top: .25rem;
     bottom: 0;
     left: 0;
     right: 0;
-    margin: auto;
+    margin: 0 auto;
 }
 
 .experienceBox h2 span{
@@ -316,6 +336,27 @@
     padding:0 .1rem;
     background: #fff;
     position: relative;
+}
+
+.experienceBox2 .after{
+  content: '';
+  opacity: .5;
+  display: block;
+  top:.4rem;
+  left: 0;
+  right: 0px;
+  width: .2rem;
+  height: .2rem;
+  background: url("../images/down.jpg") no-repeat;
+  background-size: .2rem;
+  margin: .3rem auto 0;
+}
+
+.active .after{
+  -moz-transform:scaleY(-1);
+  -webkit-transform:scaleY(-1);
+  -o-transform:scaleY(-1);
+  transform:scaleY(-1);
 }
 
 .experienceCont{
@@ -326,17 +367,23 @@
 .experienceCont p{
     font-size: .26rem;
     line-height: .46rem;
+    padding-left: .26rem;
+    position: relative;
+    margin-bottom: .1rem;
 }
 
-.experienceCont1{
-    padding: 0 .3rem;
+.experienceCont p span{
+  position: absolute;
+  left:0;
+  top: 0;
 }
 
 .experienceCont1 div{
-    padding: .35rem 0;
+    padding: .1rem .05rem;
 
 }
 .experienceCont1 div span{
+    margin-bottom: .1rem;
     padding: 0 .14rem;
     font-size: .2rem;
     line-height: .28rem;
@@ -365,6 +412,11 @@
     border-bottom:1px solid #d6d6d7;
     display: flex;
     align-items: center;
+}
+
+.experienceCont ul li font{
+  padding-left: .4rem;
+  color: #999;
 }
 
 .experienceCont ul li input{

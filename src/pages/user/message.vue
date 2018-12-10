@@ -19,8 +19,8 @@
       data () {
           return {
             param:{
-              cellphone:JSON.parse(localStorage.getItem('userInfo')).cellphone,
-              token:localStorage.getItem('token')
+              cellphone:localStorage.getItem('userInfo') && JSON.parse(localStorage.getItem('userInfo')).cellphone,
+              token:localStorage.getItem('token') || ''
             },
             list:[]
           }

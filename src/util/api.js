@@ -26,9 +26,9 @@ instance.interceptors.request.use(request => {
 // 响应
 instance.interceptors.response.use(response => {
   Indicator.close();
-    if(response.data.code === -1 || response.data.tokenerror === "签名已过期"){
+    if(response.data.code === -1 || response.data.tokenerror === "签名已过期" || response.data.message === "获取商品失败" || response.data.message === "获取失败，无有效token"){
         localStorage.clear()
-      this.$router.push('/login')
+      window.location.href='#/login'
     }
    if(!response.data.result){
      Toast(response.data.message);

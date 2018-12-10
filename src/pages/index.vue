@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="banner" v-if="bannerUrl.length">
-            <mt-swipe :auto="3000" :show-indicators="false">
+            <mt-swipe :auto="3000">
                 <mt-swipe-item v-for="(item,index) in bannerUrl" :key="index">
                     <a :href="item.gotoUrl"><img :src="item.imgUrl" /></a>
                 </mt-swipe-item>
@@ -10,23 +10,23 @@
         <div class="indexBanner">
             <router-link to="/experience">
                 <img src="./../assets/images/index-icon1.png" alt="">
-                即可体验
+                即刻体验
             </router-link>
             <router-link to="shopping">
                 <img src="./../assets/images/index-icon2.png" alt="">
                 虫草商城
             </router-link>
-            <router-link to="register">
+            <a @click="goPath('register')">
                 <img src="./../assets/images/index-icon3.png" alt="">
                 注册会员
-            </router-link>
+            </a>
             <router-link to="news">
                 <img src="./../assets/images/index-icon4.png" alt="">
                 新闻动态
             </router-link>
         </div>
         <div class="indexLane" v-if="isLogin">
-            <router-link to="/extension">
+            <router-link to="/share">
                 <img src='./../assets/images/index-banner.png' alt="">
             </router-link>
         </div>
@@ -63,8 +63,18 @@
       }
     },
     methods:{
+      goPath(path){
+        let level = localStorage.getItem("userInfo") && JSON.parse(localStorage.getItem("userInfo")).level
+        console.log(level)
+        if(level == 3 || level == 4 || level == 5){
+          this.$router.push('/shopping')
+        }else {
+          this.$router.push(path)
+        }
+      }
     },
     mounted(){
+      localStorage.setItem('sid', this.$router.history.current.query.sid)
     }
   }
 </script>

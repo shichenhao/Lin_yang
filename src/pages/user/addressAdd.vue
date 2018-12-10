@@ -1,13 +1,13 @@
 <template>
-    <div class="container">
+    <div class="container" style="bottom: 0;">
         <Header title="我的地址"></Header>
         <div class="addressAdd">
             <input type="text" v-model="param.name" placeholder="收货人姓名">
-            <input type="text" v-model="param.cellphone" placeholder="收货手机号">
-            <input type="text" v-model="param.ssq" @click="popupVisible = true" placeholder="收货地址省市区">
+            <input type="text" v-model="param.phone" placeholder="收货手机号">
+            <div class="inputText" @click="popupVisible = true">{{param.ssq || '收货地址省市区'}}</div>
             <input type="text" v-model="param.addr" placeholder="收货人地址">
             <span class="btn" v-if="noId" @click="add(true)">添加并到转到购物车</span>
-            <span class="btn" v-else @click="3">添加</span>
+            <span class="btn" v-else @click="add">添加</span>
         </div>
         <mt-popup
             v-model="popupVisible"
@@ -95,12 +95,12 @@
           }
         },
         add(type) {
-          if(!this.param.name || !this.param.cellphone || !this.param.addr || !this.param.ssq){
+          if(!this.param.name || !this.param.phone || !this.param.addr || !this.param.ssq){
             this.Toast('请填写全部收货信息！')
             return false;
           }
-          if(!Check.phone(this.param.cellphone)){
-            this.Toast('清填写正确的手机号！')
+          if(!Check.phone(this.param.phone)){
+            this.Toast('请填写正确的手机号！')
             return false;
           }
           this.$axios("AddAddress", this.param).then((res) => {

@@ -92,7 +92,7 @@ table {
 }
 
 .mint-tabbar > .mint-tab-item.is-selected{
-    background: #eee;
+    background: #fff;
 }
 
 .container{
@@ -180,8 +180,17 @@ table {
     line-height: .8rem;
     text-align: center;
     border-radius: .1rem;
+    font-size: .3rem;
     color: #fff;
     background: #005b53;
+}
+
+.btn2{
+  background: #ccc;
+}
+
+.btn3{
+  background: #005b53;
 }
 
 .containerBn{
@@ -208,4 +217,19 @@ table {
     color: #666;
     right: .2rem;
     top: .3rem;
+}
+.mint-popup,.picker{
+  width: 100%;
+}
+
+.addPop{
+  float: right;
+  color: #005b53;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.mint-header{
+  height: 1rem;
+  font-size: .3rem;
 }

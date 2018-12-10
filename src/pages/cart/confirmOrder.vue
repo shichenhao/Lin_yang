@@ -17,35 +17,35 @@
                 </div>
                 <div class="address orderInfo">
                     <p>订单信息</p>
-                    <div class="orderInfoItem">
+                    <div class="orderInfoItem" v-for="item in list">
                         <span>
-                            撒旦立刻<br />
-                            礼品在(50g/100元)
+                            {{item.goodsname}}<br />
+                            {{item.goodscomment}}
                         </span>
                         <span>
-                            x1
+                            x{{item.product_num}}
                         </span>
-                        <b>￥100</b>
+                        <b>￥{{item.newprice * item.product_num}}</b>
                     </div>
                     <div class="orderInfoResult">
                         合计
-                        <b>￥100</b>
+                        <b>￥{{price}}</b>
                     </div>
                 </div>
                 <div class="orderMoney">
                     <ul>
                         <li>
-                            使用库值
+                            库值
                             <span>
                                 <img src="./../../assets/images/money-icon1.png" alt="">
-                                5000
+                                {{info['库值']}}
                             </span>
                         </li>
                         <li>
-                            使用奖金
+                            奖金
                             <span>
                                 <img src="./../../assets/images/money-icon2.png" alt="">
-                                5000
+                                {{info['奖金']}}
                             </span>
                         </li>
                     </ul>
@@ -61,16 +61,16 @@
         </div>
         <div class="cartResult">
             应付合计
-            <b>￥100</b>
+            <b>￥{{price}}</b>
             <a @click="submit">提交订单</a>
         </div>
         <div class="adsPop" v-if="adsShow">
             <h2>选择地址</h2>
             <div class="addressList">
-                <div v-if="!list.length" class="addressNo">
+                <div v-if="!addList.length" class="addressNo">
                     <router-link to="/user/address/add?noId=1">您还没有地址，去创建</router-link>
                 </div>
-                <div class="teamItem" v-for="(item,index) in list" :key="index" @click="checks(item)">
+                <div class="teamItem" v-for="(item,index) in addList" :key="index" @click="checks(item)">
                     <span>选择</span>
                     {{item.user_name}}<br />
                     手机：{{item.user_phone}}<br />
@@ -94,17 +94,14 @@
             adsShow:false,
             isRadio:false,
             list:[],
+            addList:[],
+            info:{},
+            price:'',
             address:{
 
             },
             param:{
-              "cellphone":"13521389588",
-              "name":"test",
-              "address":"北京",
-              "orderinfo":"特惠装10盒",
-              "level":"5",
-              "totalprice":"3000",
-              "uid":"700"
+              token:localStorage.getItem('token')
             },
             adsParam:{
               token:localStorage.getItem('token')
@@ -112,10 +109,23 @@
           }
       },
       methods:{
+        getCar(){
+          this.list = JSON.parse(localStorage.getItem('car'))
+          this.price = localStorage.getItem('carPrice')
+          this.level = localStorage.getItem('userInfo').level
+
+          this.$axios("GetWealthInfo",this.param).then((res) => {
+            if(res.result){
+              //Toast(res.message);
+              this.info= res
+              //window.location.href= res.payurl
+            }
+          })
+        },
         selectAdds(){ // 选择收货地址
           this.adsShow = true
           this.$axios("GetAddress", this.adsParam).then((res) => {
-            this.list = res.address
+            this.addList = res.address
           })
         },
         checks(item){
@@ -123,26 +133,39 @@
           this.adsShow = false
         },
         submit() {
-          if(this.address.user_name){
+          if(!this.address.user_name){
             Toast('请选择收货地址!')
             return false
           }
           if(this.isRadio){
-              this.$axios("MemberOrder", this.param).then((res) => {
+            let param = {
+              token:localStorage.getItem('token'),
+              name: this.address.user_name,
+              phone:this.address.user_phone,
+              address:this.address.address_province + this.address.address_city + this.address.address_area + this.address.address_text
+            }
+            this.$axios("CartOrder", param).then((res) => {
+              if(res.result){
+                window.location.href= res.payurl
+              }
+            })
+
+
+              /*this.$axios("MemberOrder", this.param).then((res) => {
                 if(res.result){
                   Toast('下单成功!');
                   return false
                   window.location.href= res.payurl
                 }
-              })
+              })*/
           }else{
             Toast('请同意支付协议!')
           }
         },
 
       },
-      mounted(){
-
+      created(){
+        this.getCar()
       }
   }
 </script>

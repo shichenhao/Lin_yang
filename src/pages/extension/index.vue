@@ -1,5 +1,6 @@
 <template>
     <div>
+        <Header title="注册分享"></Header>
         <img :src="img" alt="">
         <div class="container" v-if="false">
             <div class="extension">

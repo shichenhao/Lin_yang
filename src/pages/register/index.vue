@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" style="bottom: 0;">
         <Header></Header>
         <div class="login">
             <div class="loginLogo"></div>
@@ -60,15 +60,15 @@
         levelList:[
           {
             val:'3',
-            text:'三级代理'
+            text:'县级代理'
           },
           {
             val:'4',
-            text:'四级代理'
+            text:'市级代理'
           },
           {
             val:'5',
-            text:'五级代理'
+            text:'省级代理'
           },
         ],
         check:{
@@ -80,6 +80,7 @@
           cellphone: null,
           password: null,
           level:'3',
+          sid:''
         }
       }
     },
@@ -126,7 +127,7 @@
 
     },
     mounted() {
-
+        this.param.sid = this.$router.history.current.query.sid || localStorage.getItem('sid') || ''
     }
   }
 </script>

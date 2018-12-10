@@ -3,7 +3,8 @@
         <Header title="我的团队"></Header>
         <div class="teamBox">
             <div class="teamItem" v-for="item in list" :key="item.MemberUID">
-                {{item.MemberName}}(ID:{{item.MemberUID}}) 代理级别：4S<br />
+                推荐人ID：{{item.MemberIntro}}(ID:{{item.MemberUID}}) 代理级别：{{item.MemberLevel}}S<br />
+                库值：{{item.MemberGoods}}奖金：{{item.MemberReward}}
             </div>
         </div>
     </div>
@@ -25,8 +26,8 @@
       },
       methods:{
         getInit() {
-          this.$axios("GetMembers", this.param).then((res) => {
-            this.list = res.Members
+          this.$axios("GetTeamInfo", this.param).then((res) => {
+            this.list = res.teaminfo
           })
         },
       },

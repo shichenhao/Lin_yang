@@ -7,8 +7,8 @@
                 <router-link to="/login" v-show="!isLogin">
                     立即登录
                 </router-link>
-                <div v-show="isLogin">
-                    张先生 <span>{{userInfo.level}}S</span>
+                <div v-show="isLogin" @click="routerPath('/user/info')">
+                    {{userInfo.realname}} <span>{{userInfo.level}}S</span>
                     <p>ID:{{userInfo.UID}}</p>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                 </ul>
             </div>
             <div class="indexLane" v-if="isLogin">
-                <router-link to="/extension">
+                <router-link to="/share">
                     <img src='../../assets/images/index-banner.png' alt="">
                 </router-link>
             </div>

@@ -71,11 +71,12 @@
 }
 
 .messageItem p{
-    padding: .1rem 0 .15rem;
+  padding: .15rem 0 .15rem;
+  font-size: .3rem;
 }
 
 .messageItem h2{
-    font-size: .24rem;
+    font-size: .34rem;
     font-weight: bold;
     color: #3f3a39;
     position: relative;
@@ -92,9 +93,9 @@
 /*user*/
 .userImg{
     width: 100%;
-    padding: .55rem .35rem 0;
-    height: 3.46rem;
-    background: url(../images/user-bg.png) no-repeat;
+    padding: .15rem .35rem 0;
+    height: 2.46rem;
+    background: url(../images/user-bg.png) no-repeat 0 center;
     background-size: 100%;
     display: flex;
     align-items: center;
@@ -119,7 +120,7 @@
     height: auto;
     position: absolute;
     left:.75rem;
-    top: 2.34rem;
+    top: 1.65rem;
 }
 
 .userImg div span{
@@ -169,6 +170,22 @@
     border-right: 2px solid #ccc;
     transform: rotate(45deg);
 }
+
+.userNav2 ul li{
+  padding-left: 0;
+}
+
+.userNav2 ul li span{
+  position: absolute;
+  right: .25rem;
+  top: .3rem;
+  color: #999;
+}
+
+.userNav2 ul li:after{
+  display: none;
+}
+
 
 .userNav ul li img{
     position: absolute;
@@ -258,12 +275,15 @@
     bottom: 0;
 }
 
-.addressAdd input{
+.addressAdd input,.addressAdd div{
     border: 0 none;
     border-bottom:1px solid #ccc;
     width: 80%;
+    border-radius: 0;
     height: .5rem;
     margin: .3rem auto 0;
+    text-align: left;
+    color: #999;
 }
 
 .addressAdd .btn{
@@ -272,9 +292,8 @@
     margin: 1rem auto 0;
 }
 
-
 .addressList a{
-    position: fixed;
+    position: absolute;
     left:0;
     right:0;
     bottom: 0;
