@@ -13,29 +13,34 @@
                 <li>
                     <input type="password" maxlength="20" v-model="param.password2" placeholder="请确认密码">
                 </li>
-                <li>
+                <li v-if="isRegister">
                     <input type="text" maxlength="6" v-model="param.name" placeholder="请输入姓名">
                 </li>
-                <li>
+                <li v-if="isRegister">
                     <select v-model="param.level">
                         <option :value="item.val" v-for="item in levelList">{{item.text}}</option>
                     </select>
                 </li>
-                <li>
+                <li v-if="isRegister">
                     <input type="text" maxlength="18" v-model="param.idnumber" placeholder="请输入身份证号" @blur="chekId">
                 </li>
                 <li>
+                <li v-if="isRegister">
                     <input type="text" maxlength="20" v-model="param.bankname" placeholder="请输入银行卡名称">
                 </li>
-                <li>
+                <li v-if="isRegister">
                     <input type="text" maxlength="18" v-model="param.bankaccount" placeholder="请输入银行卡卡号">
                 </li>
-                <li>
+                <li v-if="isRegister">
                     <input type="text" maxlength="12" v-model="param.realname" placeholder="请输入昵称">
                 </li>
-                <li>
+                <li v-if="isRegister">
                     <a class="btn" @click="register" v-if="param.cellphone && param.password && param.password2 && param.name && param.idnumber && param.bankname && param.bankaccount && param.realname">注　　册</a>
                     <a class="btn btnDisabled" v-if="!param.cellphone || !param.password || !param.password2 || !param.name || !param.idnumber || !param.bankname || !param.bankaccount || !param.realname">注　　册</a>
+                </li>
+                <li v-if="!isRegister">
+                    <a class="btn" @click="register" v-if="param.cellphone && param.password && param.password2">注　　册</a>
+                    <a class="btn btnDisabled" v-if="!param.cellphone || !param.password || !param.password2">注　　册</a>
                 </li>
                 <li class="loginDown">
                     已有账号？
@@ -57,6 +62,7 @@
     },
     data() {
       return {
+        isRegister:true,
         levelList:[
           {
             val:'3',
@@ -80,7 +86,7 @@
           cellphone: null,
           password: null,
           level:'3',
-          sid:$
+          sid:localStorage.getItem('sid')
         }
       }
     },
@@ -94,9 +100,23 @@
           Toast('手机号已存在请更换!');
           return false;
         }
-        if(!this.check.id){
-          Toast('身份证号码已存在请更换!');
-          return false;
+        if(this.isRegister){
+          if(!this.check.id){
+            Toast('身份证号码已存在请更换!');
+            return false;
+          }
+          if(!this.param.bankname){
+            Toast('请输入银行卡名称!');
+            return false;
+          }
+          if(!this.param.bankaccount){
+            Toast('请输入银行卡卡号!');
+            return false;
+          }
+          if(!this.param.realname){
+            Toast('请输入昵称!');
+            return false;
+          }
         }
         this.$axios("Regist", this.param).then((res) => {
           if(res.result){
@@ -127,6 +147,10 @@
 
     },
     mounted() {
+      if(this.$router.history.current.query.isRegister){
+        this.isRegister = false
+        this.param.level =  0
+      }
 
     }
   }

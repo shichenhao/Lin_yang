@@ -235,8 +235,8 @@
                       value: '1',
                   },
                   {
-                      label: '2',
-                      value: '2份',
+                      label: '2份',
+                      value: '2',
                   }
               ],
               options:[

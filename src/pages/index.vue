@@ -74,7 +74,7 @@
       }
     },
     mounted(){
-      localStorage.setItem('sid', this.$router.history.current.query.sid)
+      localStorage.setItem('sid', this.$router.history.current.query.sid || '')
     }
   }
 </script>

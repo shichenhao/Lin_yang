@@ -41,7 +41,6 @@
             }
         },
       created(){
-          localStorage.setItem('sid', this.$router.history.current.query.sid)
           if(this.$router.history.current.path === "/user/message"){
             this.selected = '/user/message'
           }else if(this.$router.history.current.path === "/user"){

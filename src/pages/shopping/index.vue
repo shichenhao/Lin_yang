@@ -42,6 +42,10 @@
       },
       methods:{
         subOrder(order) {
+          if(!this.orderParam.token){
+            this.$router.push('/register?isRegister=false')
+            return false
+          }
           let params={
             token:localStorage.getItem('token'),
             gid: order.goodsid,
