@@ -80,7 +80,7 @@
           cellphone: null,
           password: null,
           level:'3',
-          sid:''
+          sid:$
         }
       }
     },
@@ -127,7 +127,7 @@
 
     },
     mounted() {
-        this.param.sid = this.$router.history.current.query.sid || localStorage.getItem('sid') || ''
+
     }
   }
 </script>
