@@ -27,6 +27,33 @@
     background: #fff;
 }
 
+.register{
+  padding: 0 .27rem;
+}
+
+.register ul li{
+  padding-top: .1rem;
+  position: relative;
+}
+
+.register ul li font{
+  color: #b6b6b7;
+  position: absolute;
+  right: .78rem;
+  font-size: .32rem;
+}
+.register ul li input,.register ul li select{
+  border-bottom: 1px solid #dcdcdc;
+  height: .9rem;
+  padding: 0 .48rem;
+  color: #4b4b4b;
+  font-size: .32rem;
+}
+
+::-webkit-input-placeholder{
+  color: #000;
+}
+
 .login .btn{
     width: 100%;
     display: block;
@@ -58,7 +85,7 @@
 }
 
 .messageBox{
-    margin: .2rem 0;
+    margin: .2rem 0 0;
     background: #fff;
 }
 

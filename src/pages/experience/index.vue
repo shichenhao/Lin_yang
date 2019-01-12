@@ -1,11 +1,11 @@
 <template>
-    <div class="container" style="bottom: 0;">
+    <div class="container">
         <Header title="即刻体验"></Header>
         <div class="modelBanner">
             <img src="../../assets/images/experience-banner.png" alt="">
         </div>
         <div class="experienceBox" style="background: none">
-            <a class="btn" @click="returnTop">马上分享 ></a>
+            <a class="btn" @click="returnTop">即刻分享</a>
         </div>
         <div class="experienceBox experienceBox2" :class="{active : active.active1 }">
             <h2 @click="isActive(1)">
@@ -95,7 +95,7 @@
             </div>
             <span class="after" @click="isActive(2)"></span>
         </div>
-        <div class="experienceBox experienceBox2 experienceBox3" :class="{active : active.active3,clickNo : !param.level || param.level!=1}">
+        <div class="experienceBox experienceBox2 experienceBox3" v-if="param.level" :class="{active : active.active3,clickNo : !param.level || param.level!=1}">
             <h2 @click="isActive(3)">
                 <span>体验反馈</span>
             </h2>

@@ -1,6 +1,6 @@
 <template>
     <div class="container containerBn">
-        <Header title="新闻中心"></Header>
+        <Header title="新闻一览"></Header>
         <div class="news">
             <div class="newsBanner">
                 <img src="../../assets/images/news_banner.jpg" alt="">

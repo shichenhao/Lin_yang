@@ -1,46 +1,32 @@
 <template>
     <div class="container" style="bottom: 0;">
-        <Header></Header>
-        <div class="login">
-            <div class="loginLogo"></div>
+        <Header title="注册中心"></Header>
+        <div class="login register">
             <ul>
                 <li>
-                    <input type="number" maxlength="11" v-model="param.cellphone" placeholder="请输入手机号" @blur="chekPhone">
-                </li>
-                <li>
-                    <input type="password" maxlength="20" v-model="param.password" placeholder="请输入密码">
-                </li>
-                <li>
-                    <input type="password" maxlength="20" v-model="param.password2" placeholder="请确认密码">
-                </li>
-                <li v-if="isRegister">
-                    <input type="text" maxlength="6" v-model="param.name" placeholder="请输入姓名">
-                </li>
-                <li v-if="isRegister">
                     <select v-model="param.level">
                         <option :value="item.val" v-for="item in levelList">{{item.text}}</option>
                     </select>
                 </li>
-                <li v-if="isRegister">
-                    <input type="text" maxlength="18" v-model="param.idnumber" placeholder="请输入身份证号" @blur="chekId">
+                <li>
+                    <input type="text" maxlength="6" v-model="param.name" placeholder="代理商姓名">
+                    <font>请填写注册人真实姓名</font>
                 </li>
                 <li>
-                <li v-if="isRegister">
-                    <input type="text" maxlength="20" v-model="param.bankname" placeholder="请输入银行卡名称">
+                    <input type="number" maxlength="11" v-model="param.cellphone" placeholder="绑定手机号码" @blur="chekPhone">
                 </li>
-                <li v-if="isRegister">
-                    <input type="text" maxlength="18" v-model="param.bankaccount" placeholder="请输入银行卡卡号">
+                <li>
+                    <input type="text" maxlength="18" v-model="param.idnumber" placeholder="身份证号" @blur="chekId">
                 </li>
-                <li v-if="isRegister">
-                    <input type="text" maxlength="12" v-model="param.realname" placeholder="请输入昵称">
+                <li>
+                    <input type="password" maxlength="20" v-model="param.password" placeholder="设置登录密码">
                 </li>
-                <li v-if="isRegister">
-                    <a class="btn" @click="register" v-if="param.cellphone && param.password && param.password2 && param.name && param.idnumber && param.bankname && param.bankaccount && param.realname">注　　册</a>
-                    <a class="btn btnDisabled" v-if="!param.cellphone || !param.password || !param.password2 || !param.name || !param.idnumber || !param.bankname || !param.bankaccount || !param.realname">注　　册</a>
+                <li>
+                    <input type="password" maxlength="20" v-model="param.password2" placeholder="确认登录密码">
                 </li>
-                <li v-if="!isRegister">
-                    <a class="btn" @click="register" v-if="param.cellphone && param.password && param.password2">注　　册</a>
-                    <a class="btn btnDisabled" v-if="!param.cellphone || !param.password || !param.password2">注　　册</a>
+                <li>
+                    <a class="btn" @click="register" v-if="param.cellphone && param.password && param.password2 && param.name && param.idnumber && param.name">注　　册</a>
+                    <a class="btn btnDisabled" v-if="!param.cellphone || !param.password || !param.password2 || !param.name || !param.idnumber || !param.name">注　　册</a>
                 </li>
                 <li class="loginDown">
                     已有账号？
@@ -65,16 +51,16 @@
         isRegister:true,
         levelList:[
           {
+            val:'1',
+            text:'一级代理商'
+          },
+          {
+            val:'2',
+            text:'二级代理商'
+          },
+          {
             val:'3',
-            text:'县级代理'
-          },
-          {
-            val:'4',
-            text:'市级代理'
-          },
-          {
-            val:'5',
-            text:'省级代理'
+            text:'团购客户'
           },
         ],
         check:{
@@ -85,7 +71,7 @@
           key: 'Regist',
           cellphone: null,
           password: null,
-          level:'3',
+          level:'1',
           sid:localStorage.getItem('sid')
         }
       }
@@ -103,18 +89,6 @@
         if(this.isRegister){
           if(!this.check.id){
             Toast('身份证号码已存在请更换!');
-            return false;
-          }
-          if(!this.param.bankname){
-            Toast('请输入银行卡名称!');
-            return false;
-          }
-          if(!this.param.bankaccount){
-            Toast('请输入银行卡卡号!');
-            return false;
-          }
-          if(!this.param.realname){
-            Toast('请输入昵称!');
             return false;
           }
         }
@@ -136,13 +110,18 @@
         })
       },
       chekId() {
-        this.$axios("CheckID", {cellphone : this.param.idnumber}).then((res) => {
-          if(res.result){
-            this.check.id = true
-          }else{
-            this.check.id = false
-          }
-        })
+        let reg = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/
+        if(reg.test(this.param.idnumber)){
+            this.$axios("CheckID", {cellphone : this.param.idnumber}).then((res) => {
+              if(res.result){
+                this.check.id = true
+              }else{
+                this.check.id = false
+              }
+            })
+        }else{
+          Toast('请输入正确的身份证号!');
+        }
       },
 
     },

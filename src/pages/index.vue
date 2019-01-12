@@ -8,22 +8,14 @@
             </mt-swipe>
         </div>
         <div class="indexBanner">
-            <router-link to="/experience">
-                <img src="./../assets/images/index-icon1.png" alt="">
-                即刻体验
-            </router-link>
+            <router-link to="/experience"><img src="./../assets/images/index-icon1.png" alt="">即刻体验</router-link>
             <router-link to="shopping">
-                <img src="./../assets/images/index-icon2.png" alt="">
-                虫草商城
+                <img src="./../assets/images/index-icon2.png" alt="">虫草商城
             </router-link>
             <a @click="goPath('register')">
-                <img src="./../assets/images/index-icon3.png" alt="">
-                注册会员
+                <img src="./../assets/images/index-icon3.png" alt="">代理中心
             </a>
-            <router-link to="news">
-                <img src="./../assets/images/index-icon4.png" alt="">
-                新闻动态
-            </router-link>
+            <router-link to="news"><img src="./../assets/images/index-icon4.png" alt="">新闻一览</router-link>
         </div>
         <div class="indexLane" v-if="isLogin">
             <router-link to="/share">
@@ -35,9 +27,9 @@
 <script>
   import { Indicator } from 'mint-ui';
   import bannerImg1 from './../assets/images/index-banner1.png'
-  import bannerImg2 from './../assets/images/index-banner2.png'
+  import bannerImg2 from './../assets/images/index-banner2.jpg'
   import bannerImg3 from './../assets/images/index-banner3.png'
-  import bannerImg4 from './../assets/images/index-banner4.png'
+  import bannerImg4 from './../assets/images/index-banner4.jpg'
   export default {
     name: 'index',
     data () {
@@ -57,6 +49,10 @@
               {
                   gotoUrl:null,
                   imgUrl:bannerImg3
+              },
+              {
+                  gotoUrl:null,
+                  imgUrl:bannerImg4
               }
           ],
 
@@ -66,10 +62,11 @@
       goPath(path){
         let level = localStorage.getItem("userInfo") && JSON.parse(localStorage.getItem("userInfo")).level
         console.log(level)
-        if(level == 3 || level == 4 || level == 5){
+        //if(level == 3 || level == 4 || level == 5){
+        if(level){
           this.$router.push('/shopping')
         }else {
-          this.$router.push(path)
+          this.$router.push('/login')
         }
       }
     },

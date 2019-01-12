@@ -30,6 +30,5 @@
     .mint-header{
         background:#fff;
         color:#000;
-        border-bottom: 2px solid #f1f1f1;
     }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" style="background-color: #efefef">
         <Header title="消息中心"></Header>
         <div class="messageBox">
             <div class="messageItem" v-for="item in list" :key="item.news_id">

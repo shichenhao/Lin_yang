@@ -76,7 +76,7 @@ export default new Router({
           path: '/register',
           component: Register,
           meta: {
-              title: '注册',
+              title: '代理中心',
               navShow: false
           }
       },
@@ -149,7 +149,7 @@ export default new Router({
           component: Experience,
           meta: {
               title: '即刻体验',
-              navShow: false
+            navShow: true
           }
       },
       {
@@ -172,7 +172,7 @@ export default new Router({
       path: '/news',
       component: News,
       meta: {
-        title: '新闻中心',
+        title: '新闻一览',
         navShow: false
       }
     },
