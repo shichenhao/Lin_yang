@@ -341,3 +341,28 @@ table {
   font-size: .34rem;
   color: #595656;
 }
+
+.indexContiner{
+  padding-top: .8rem;
+}
+
+.indexIcon{
+  position: fixed;
+  z-index: 2000;
+  left:0;
+  top:0;
+  right: 0;
+  padding: 0 .1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: .8rem;
+  background: #fff;
+  border-bottom: 1px solid #efefef;
+}
+
+.indexIcon img{
+  height: .4rem;
+  width: auto;
+}
+

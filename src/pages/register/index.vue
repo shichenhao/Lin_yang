@@ -35,6 +35,13 @@
             </ul>
             <div class="loginBottom"></div>
         </div>
+        <div class="registerOk" v-if="isOk">
+            <span>{{param.name}} {{getGrender(param.idnumber || 0)}}：</span>
+            <p>
+                感谢您注册成为“绿麒麟 S7 富通虫草茶”，{{getLev(param.level)}}请等待上级代理商激活并调配库值。
+            </p>
+            <img src="../../assets/images/logoDown2.png">
+        </div>
     </div>
 </template>
 <script>
@@ -48,6 +55,8 @@
     },
     data() {
       return {
+        // 注册等待击获
+        isOk:false,
         isRegister:true,
         levelList:[
           {
@@ -77,6 +86,18 @@
       }
     },
     methods: {
+      // 获取性别
+      getGrender(val){
+        if(val){
+          let gender = val.slice(14, 17) % 2 ? "1" : "2"; // 1代表男性，2代表女性
+          gender === "1" ? '先生' : '女士'
+          return gender
+        }
+      },
+      // 获取级别
+      getLev(val){
+        this.levelList.filter(item=>item.val === val)
+      },
       register() {
         if(this.param.password !==  this.param.password2){
           Toast('两次输入的密码不一致!');
@@ -94,6 +115,7 @@
         }
         this.$axios("Regist", this.param).then((res) => {
           if(res.result){
+            this.isOk = true
             Toast('注册成功!');
             localStorage.setItem('token',res.token);
             this.$router.push('/login')

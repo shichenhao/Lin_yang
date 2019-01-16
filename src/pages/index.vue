@@ -1,5 +1,9 @@
 <template>
-    <div class="container">
+    <div class="container indexContiner">
+        <div class="indexIcon">
+            <img @click="goLogin" src="../assets/images/nav-icon4-a.png">
+            <img src="../assets/images/share.png">
+        </div>
         <div class="banner" v-if="bannerUrl.length">
             <mt-swipe :auto="3000">
                 <mt-swipe-item v-for="(item,index) in bannerUrl" :key="index">
@@ -8,18 +12,18 @@
             </mt-swipe>
         </div>
         <div class="indexBanner">
-            <router-link to="/experience"><img src="./../assets/images/index-icon1.png" alt="">即刻体验</router-link>
+            <router-link to="/experience"><img src="./../assets/images/index-icon1.png">即刻体验</router-link>
             <router-link to="shopping">
-                <img src="./../assets/images/index-icon2.png" alt="">虫草商城
+                <img src="./../assets/images/index-icon2.png">虫草商城
             </router-link>
             <a @click="goPath('register')">
-                <img src="./../assets/images/index-icon3.png" alt="">代理中心
+                <img src="./../assets/images/index-icon3.png">代理中心
             </a>
-            <router-link to="news"><img src="./../assets/images/index-icon4.png" alt="">新闻一览</router-link>
+            <router-link to="news"><img src="./../assets/images/index-icon4.png">新闻一览</router-link>
         </div>
         <div class="indexLane" v-if="isLogin">
             <router-link to="/share">
-                <img src='./../assets/images/index-banner.png' alt="">
+                <img src='./../assets/images/index-banner.png'>
             </router-link>
         </div>
     </div>

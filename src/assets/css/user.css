@@ -1,48 +1,77 @@
-.login{
-    background: #fff;
-    padding: .3rem .7rem;
+.registerOk {
+  background: #005b52;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  padding: 3rem 0.85rem 0;
+  text-align: center;
+  line-height: .6rem;
+  font-size: .3rem;
 }
 
-.loginLogo{
-    width: 1.98rem;
-    height: 2.65rem;
-    margin: 0 auto .3rem;
-    background: url(../images/logo.png) no-repeat;
-    background-size: 100%;
+.registerOk img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  bottom: 1.5rem;
+  width: 2.5rem;
 }
 
-.login ul li{
-    width: 100%;
-    display: flex;
-    align-items: center;
+.registerOk span {
+  font-size: .38rem;
+  font-weight: 700;
 }
 
-.login ul li input,.login ul li select{
-    width: 100%;
-    height: 1rem;
-    border: 0 none;
-    font-size: .3rem;
-    border-bottom: 2px solid #e1e1e1;
-    vertical-align: middle;
-    background: #fff;
+.login {
+  background: #fff;
+  padding: .3rem .7rem;
 }
 
-.register{
+.loginLogo {
+  width: 1.98rem;
+  height: 2.65rem;
+  margin: 0 auto .3rem;
+  background: url(../images/logo.png) no-repeat;
+  background-size: 100%;
+}
+
+.login ul li {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.login ul li input, .login ul li select {
+  width: 100%;
+  height: 1rem;
+  border: 0 none;
+  font-size: .3rem;
+  border-bottom: 2px solid #e1e1e1;
+  vertical-align: middle;
+  background: #fff;
+}
+
+.register {
   padding: 0 .27rem;
 }
 
-.register ul li{
+.register ul li {
   padding-top: .1rem;
   position: relative;
 }
 
-.register ul li font{
+.register ul li font {
   color: #b6b6b7;
   position: absolute;
   right: .78rem;
   font-size: .32rem;
 }
-.register ul li input,.register ul li select{
+
+.register ul li input, .register ul li select {
   border-bottom: 1px solid #dcdcdc;
   height: .9rem;
   padding: 0 .48rem;
@@ -50,304 +79,338 @@
   font-size: .32rem;
 }
 
-::-webkit-input-placeholder{
+::-webkit-input-placeholder {
   color: #000;
 }
 
-.login .btn{
-    width: 100%;
-    display: block;
-    height: .8rem;
-    line-height: .8rem;
-    text-align: center;
-    border-radius: .1rem;
-    color: #fff;
-    margin: .4rem 0 .2rem;
-    background: #005b53;
-}
-.login .btnDisabled{
-    background: #aaa;
+.login .btn {
+  width: 100%;
+  display: block;
+  height: .8rem;
+  line-height: .8rem;
+  text-align: center;
+  border-radius: .1rem;
+  color: #fff;
+  margin: .4rem 0 .2rem;
+  background: #005b53;
 }
 
-.login ul .loginDown{
-    justify-content: space-between;
+.login .btnDisabled {
+  background: #aaa;
 }
 
-.login ul .loginDown a,.login ul .loginDown span{
-    color: #005b53;
+.login ul .loginDown {
+  justify-content: space-between;
 }
 
-.loginBottom{
-    margin-top: .8rem;
-    height: 2.28rem;
-    background: url(../images/logoDown.png) no-repeat center;
-    background-size: 3rem 2.28rem;
+.login ul .loginDown a, .login ul .loginDown span {
+  color: #005b53;
 }
 
-.messageBox{
-    margin: .2rem 0 0;
-    background: #fff;
+.loginBottom {
+  margin-top: .8rem;
+  height: 2.28rem;
+  background: url(../images/logoDown.png) no-repeat center;
+  background-size: 3rem 2.28rem;
 }
 
-.messageItem{
-    border-top:1px solid #d5d5d6;
-    line-height: .36rem;
-    font-size: .22rem;
-    padding: .3rem .3rem .1rem;
-    color: #898989;
+.messageBox {
+  margin: .2rem 0 0;
+  background: #fff;
 }
 
-.messageItem p{
+.messageItem {
+  border-top: 1px solid #d5d5d6;
+  line-height: .36rem;
+  font-size: .22rem;
+  padding: .3rem .3rem .1rem;
+  color: #898989;
+}
+
+.messageItem p {
   padding: .15rem 0 .15rem;
   font-size: .3rem;
 }
 
-.messageItem h2{
-    font-size: .34rem;
-    font-weight: bold;
-    color: #3f3a39;
-    position: relative;
+.messageItem h2 {
+  font-size: .34rem;
+  font-weight: bold;
+  color: #3f3a39;
+  position: relative;
 }
 
-.messageItem h2 span{
-    color: #898989;
-    position: absolute;
-    right: 0;
-    top: 0;
+.messageItem h2 span {
+  color: #898989;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
+
+
 
 
 /*user*/
-.userImg{
-    width: 100%;
-    padding: .15rem .35rem 0;
-    height: 3.4rem;
-    background: url(../images/user-bg.png) no-repeat 0 center;
-    background-size: 100%;
-    display: flex;
-    align-items: center;
-    color: #fff;
-    font-size: .32rem;
-    position: relative;
+.userImg {
+  width: 100%;
+  padding: .15rem .35rem 0;
+  height: 3.4rem;
+  background: url(../images/user-bg.png) no-repeat 0 center;
+  background-size: 100%;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: .32rem;
+  position: relative;
 }
 
-.userImg a{
-    color: #fff;
+.userImg a {
+  color: #fff;
 }
 
-.userImg img{
-    width: 1.1rem;
-    height: 1.1rem;
-    border-radius: 1.1rem;
-    margin-right: .25rem;
+.userImg img {
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 1.1rem;
+  margin-right: .25rem;
 }
 
-.userImg .userLogo{
-    width: .29rem;
-    height: auto;
-    position: absolute;
-    left:.75rem;
-    top: 1.65rem;
+.userImg .userLogo {
+  width: .29rem;
+  height: auto;
+  position: absolute;
+  left: .75rem;
+  top: 1.65rem;
 }
 
-.userImg div span{
-    border: 2px solid #eace76;
-    border-radius:.3rem;
-    color: #eace76;
-    padding: 0 .14rem;
-    height: .3rem;
-    line-height: .25rem;
-    display: inline-block;
-    font-size: .2rem;
+.userImg div span {
+  border: 2px solid #eace76;
+  border-radius: .3rem;
+  color: #eace76;
+  padding: 0 .14rem;
+  height: .3rem;
+  line-height: .25rem;
+  display: inline-block;
+  font-size: .2rem;
 }
 
-.userImg div p{
-    font-size: .2rem;
-    padding-top: .1rem;
-    font-weight: 100;
+.userImg div p {
+  font-size: .2rem;
+  padding-top: .1rem;
+  font-weight: 100;
 }
 
-.userNav{
-    padding-left: .35rem;
-    background: #fff;
+.userNav {
+  padding-left: .35rem;
+  background: #fff;
 }
 
-.userNav ul li{
-    font-size: .26rem;
-    color: #333;
-    height: 1rem;
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid #ddd;
-    padding-left: .6rem;
-    position: relative;
+.userNav ul li {
+  font-size: .26rem;
+  color: #333;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #ddd;
+  padding-left: .6rem;
+  position: relative;
 }
 
-.userNav ul li:after{
-    content: '';
-    position: absolute;
-    right: .5rem;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    display: block;
-    width: .1rem;
-    height: .1rem;
-    border-top: 2px solid #ccc;
-    border-right: 2px solid #ccc;
-    transform: rotate(45deg);
+.userNav ul li:after {
+  content: '';
+  position: absolute;
+  right: .5rem;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  display: block;
+  width: .1rem;
+  height: .1rem;
+  border-top: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  transform: rotate(45deg);
 }
 
-.userNav2 ul li{
+.userNav2 ul li {
   padding-left: 0;
 }
 
-.userNav2 ul li span{
+.userNav2 ul li span {
   position: absolute;
   right: .25rem;
   top: .3rem;
   color: #999;
 }
 
-.userNav2 ul li:after{
+.userNav2 ul li:after {
   display: none;
 }
 
-
-.userNav ul li img{
-    position: absolute;
-    left:.05rem;
-    top: 0;
-    bottom: 0;
-    margin: auto 0;
-    height:.31rem;
-    width: auto;
+.userNav ul li img {
+  position: absolute;
+  left: .05rem;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  height: .31rem;
+  width: auto;
 }
 
-.userNav ul li:last-child{
-    border: 0 none;
+.userNav ul li:last-child {
+  border: 0 none;
 }
-
 
 /*财富*/
-
-
-.moneyItem{
-    text-align: center;
-    padding-top: .4rem;
+.moneyBox{
+  border-top: .2rem solid #efefef;
+}
+.moneyItem {
+  text-align: center;
+  padding-top: .1rem;
 }
 
-.moneyItem img{
-    width: .83rem;
+.moneyItem img {
+  width: .83rem;
 }
 
-.moneyItem h2{
-    position: relative;
-    font-size: .26rem;
-    color: #727171;
-    font-weight: 400;
+.moneyItem h2 {
+  position: relative;
+  font-size: .4rem;
+  color: #727171;
+  font-weight: 700;
 }
 
-.moneyItem h2 span{
-    position: relative;
-    background: #fff;
-    padding: 0 .2rem;
+.h2{
+  font-size: .3rem;
+  color: #727171;
+  font-weight: 700;
 }
 
-.moneyItem h2:before{
-    content: '';
-    width: 4.4rem;
-    height: 2px;
-    background: #b5b6b6;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+.moneyItem h2 span {
+  font-size: .3rem;
+  position: relative;
+  background: #fff;
+  display: inline-block;
+  padding: 0 .2rem;
 }
 
-.moneyItem p{
-    width: 4.4rem;
-    margin: 0 auto;
-    padding: .1rem 0 .2rem;
-    color: #005b53;
-    font-weight:bold;
-    font-size: .8rem;
-    border-bottom: 2px solid #b5b6b6;
+.moneyItem h2:before {
+  content: '';
+  height:2px;
+  width: 4.4rem;
+  border-bottom: .02rem solid #b5b6b6;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.moneyItem p {
+  width: 4.4rem;
+  margin: 0 auto;
+  padding: .1rem 0 .2rem;
+  color: #005b53;
+  font-weight: bold;
+  font-size: .8rem;
+  margin-bottom: .2rem;
+  border-bottom: .02rem solid #b5b6b6;
+}
+
+.moneyBox2{
+  padding: .3rem;
+}
+
+.moneyBox2 ul li {
+  padding-top: .1rem;
+  position: relative;
+}
+
+.moneyBox2 ul li input, .moneyBox2 ul li select {
+  border-bottom: 1px solid #dcdcdc;
+  height: .9rem;
+  padding: 0 .5rem;
+  color: #4b4b4b;
+  font-size: .3rem;
+  width: 100%;
+}
+
+
+.moneyBox2 ul li.pad{
+  position: relative;
+  padding: .8rem .5rem 0;
+}
+
+.changeA{
+  position: absolute;
+  color: #767676;
+  font-size: .22rem;
+  border-bottom: 1px solid #dfdfdf;
+  text-decoration: underline;
+  display: inline-block;
+  left: .5rem;
+  top: .1rem;
 }
 
 /*team*/
 
-.teamItem{
-    padding: .48rem .7rem;
-    color: #727171;
-    font-size: .3rem;
-    line-height: .5rem;
-    background: #fff;
+.teamItem {
+  padding: .48rem .7rem;
+  color: #727171;
+  font-size: .3rem;
+  line-height: .5rem;
+  background: #fff;
 }
-
-
 
 /*收货地址*/
 
-.addressAdd{
-    background: #fff;
-    text-align: center;
-    padding: 20px 0 0;
-    position: absolute;
-    left: 0;
-    top: 40px;
-    right: 0;
-    bottom: 0;
+.addressAdd {
+  background: #fff;
+  text-align: center;
+  padding: 20px 0 0;
+  position: absolute;
+  left: 0;
+  top: 40px;
+  right: 0;
+  bottom: 0;
 }
 
-.addressAdd input,.addressAdd div{
-    border: 0 none;
-    border-bottom:1px solid #ccc;
-    width: 80%;
-    border-radius: 0;
-    height: .5rem;
-    margin: .3rem auto 0;
-    text-align: left;
-    color: #999;
+.addressAdd input, .addressAdd div {
+  border: 0 none;
+  border-bottom: 1px solid #ccc;
+  width: 80%;
+  border-radius: 0;
+  height: .5rem;
+  margin: .3rem auto 0;
+  text-align: left;
+  color: #999;
 }
 
-.addressAdd .btn{
-    display: block;
-    width: 80%;
-    margin: 1rem auto 0;
+.addressAdd .btn {
+  display: block;
+  width: 80%;
+  margin: 1rem auto 0;
 }
 
-.addressList a{
-    position: absolute;
-    left:0;
-    right:0;
-    bottom: 0;
-    height: 40px;
-    line-height: 40px;
-    background: #c00;
-    color: #fff;
-    text-align: center;
+.addressList a {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40px;
+  line-height: 40px;
+  background: #c00;
+  color: #fff;
+  text-align: center;
 }
 
-
-
-
-
-
-
-
-
-
-
-.mint-popup,.picker{
-    width: 100%;
+.mint-popup, .picker {
+  width: 100%;
 }
 
-.addPop{
-    float: right;
-    color: #005b53;
-    cursor: pointer;
-    padding: 10px;
+.addPop {
+  float: right;
+  color: #005b53;
+  cursor: pointer;
+  padding: 10px;
 }

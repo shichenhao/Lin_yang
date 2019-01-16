@@ -13,6 +13,7 @@ import User from '@/pages/user/'
 import UserMessage from '@/pages/user/message'
 import UserInfo from '@/pages/user/info'
 import UserMoney from '@/pages/user/money'
+import UserJf from '@/pages/user/jf'
 import UserTeam from '@/pages/user/team'
 import UserToker from '@/pages/user/toker'
 import UserAddress from '@/pages/user/address'
@@ -124,7 +125,15 @@ export default new Router({
           path: '/user/money',
           component: UserMoney,
           meta: {
-              title: '我的财富',
+              title: '我的库值',
+              navShow: false
+          }
+      },
+      {
+          path: '/user/jf',
+          component: UserJf,
+          meta: {
+              title: '我的积分',
               navShow: false
           }
       },

@@ -14,13 +14,13 @@
             </div>
             <div class="userNav">
                 <ul>
-                    <li @click="routerPath('/user/address')">
-                        <img src="../../assets/images/user-icon1.png" />
-                        我的地址
-                    </li>
                     <li @click="routerPath('/user/info')">
                         <img src="../../assets/images/user-icon1.png" />
                         个人资料
+                    </li>
+                    <li @click="routerPath('/user/address')">
+                        <img src="../../assets/images/user-icon1.png" />
+                        我的地址
                     </li>
                     <li @click="routerPath('/user/message')">
                         <img src="../../assets/images/user-icon2.png" />
@@ -28,7 +28,11 @@
                     </li>
                     <li @click="routerPath('/user/money')">
                         <img src="../../assets/images/user-icon3.png" />
-                        我的财富
+                        我的库值
+                    </li>
+                    <li @click="routerPath('/user/jf')">
+                        <img src="../../assets/images/user-icon3.png" />
+                        我的积分
                     </li>
                     <li @click="routerPath('/user/team')">
                         <img src="../../assets/images/user-icon4.png" />
@@ -36,11 +40,7 @@
                     </li>
                     <li @click="routerPath('/user/toker')">
                         <img src="../../assets/images/user-icon5.png" />
-                        拓客信息
-                    </li>
-                    <li @click="routerPath('/user/about')">
-                        <img src="../../assets/images/user-icon6.png" />
-                        帮助反馈
+                        我的业绩
                     </li>
                 </ul>
             </div>
