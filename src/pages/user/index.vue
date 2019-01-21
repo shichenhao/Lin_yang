@@ -44,13 +44,13 @@
                         <img src="../../assets/images/yeji.png" />
                         我的业绩
                     </li>
-                    <li @click="routerPath('/share')">
-                        <img src="../../assets/images/icon2.png" />
-                        一封信一风情
-                    </li>
                     <li @click="routerPath('/share2')">
+                        <img src="../../assets/images/icon2.png" />
+                        分享加盟
+                    </li>
+                    <li @click="routerPath('/share')">
                         <img src="../../assets/images/icon3.png" />
-                        云次麟集灵草筑梦
+                        分享体验
                     </li>
                     <li class="lout">
                         <a class="btn" @click="lout">退出登录</a>
