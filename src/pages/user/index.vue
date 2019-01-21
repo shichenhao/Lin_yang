@@ -1,50 +1,63 @@
 <template>
-    <div class="container">
+    <div class="container" style="padding: 0rem;margin-bottom: 1rem">
         <div class="userBox">
-            <div class="userImg">
-                <img src="../../assets/images/head.png" />
+            <div class="userImg" @click="routerPath('/user/info')">
+                <div class="userHead">
+                    <img :src="userInfo.photourl || '../../assets/images/head.png'" />
+                </div>
                 <img class="userLogo" src="../../assets/images/user-logo.png" alt="">
                 <router-link to="/login" v-show="!isLogin">
                     立即登录
                 </router-link>
                 <div v-show="isLogin" @click="routerPath('/user/info')">
-                    {{userInfo.realname}} <span>{{userInfo.level}}S</span>
+                    {{userInfo.realname}} <span :style="{width:(userInfo.level * 0.4)+'rem'}"></span>
                     <p>ID:{{userInfo.UID}}</p>
                 </div>
             </div>
             <div class="userNav">
                 <ul>
                     <li @click="routerPath('/user/info')">
-                        <img src="../../assets/images/user-icon1.png" />
+                        <img src="../../assets/images/ziliao.png" />
                         个人资料
                     </li>
                     <li @click="routerPath('/user/address')">
-                        <img src="../../assets/images/user-icon1.png" />
+                        <img src="../../assets/images/dizhi.png" />
                         我的地址
                     </li>
                     <li @click="routerPath('/user/message')">
-                        <img src="../../assets/images/user-icon2.png" />
+                        <img src="../../assets/images/xiaoxi.png" />
                         我的消息
                     </li>
                     <li @click="routerPath('/user/money')">
-                        <img src="../../assets/images/user-icon3.png" />
-                        我的库值
+                        <img src="../../assets/images/kuzhi.png" />
+                        我的库存
                     </li>
                     <li @click="routerPath('/user/jf')">
-                        <img src="../../assets/images/user-icon3.png" />
+                        <img src="../../assets/images/jifen.png" />
                         我的积分
                     </li>
                     <li @click="routerPath('/user/team')">
-                        <img src="../../assets/images/user-icon4.png" />
+                        <img src="../../assets/images/tuandui.png" />
                         我的团队
                     </li>
                     <li @click="routerPath('/user/toker')">
-                        <img src="../../assets/images/user-icon5.png" />
+                        <img src="../../assets/images/yeji.png" />
                         我的业绩
+                    </li>
+                    <li @click="routerPath('/share')">
+                        <img src="../../assets/images/icon2.png" />
+                        一封信一风情
+                    </li>
+                    <li @click="routerPath('/share2')">
+                        <img src="../../assets/images/icon3.png" />
+                        云次麟集灵草筑梦
+                    </li>
+                    <li class="lout">
+                        <a class="btn" @click="lout">退出登录</a>
                     </li>
                 </ul>
             </div>
-            <div class="indexLane" v-if="isLogin">
+            <div class="indexLane" v-if="false">
                 <router-link to="/share">
                     <img src='../../assets/images/index-banner.png' alt="">
                 </router-link>
@@ -70,6 +83,10 @@
           }
       },
       methods:{
+        lout(){
+          localStorage.clear();
+          this.$router.push('/')
+        },
         routerPath(url) {
           if(this.isLogin){
             this.$router.push(url)

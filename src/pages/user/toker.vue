@@ -4,7 +4,7 @@
         <div class="teamBox">
             <div class="teamItem" v-for="item in list" :key="item.MemberUID">
                 推荐人ID：{{item.MemberIntro}}(ID:{{item.MemberUID}}) 代理级别：{{item.MemberLevel}}S<br />
-                库值：{{item.MemberGoods}}奖金：{{item.MemberReward}}
+                库存：{{item.MemberGoods}}奖金：{{item.MemberReward}}
             </div>
         </div>
     </div>

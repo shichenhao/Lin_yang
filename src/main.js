@@ -6,11 +6,13 @@ import '@/assets/css/common.css'
 import '@/assets/css/index.css'
 import router from './router';
 import './assets/common'
-import { http, multipart } from './util/api'
+import { http, multipart, getNews } from './util/api'
 import App from './App.vue'
 
 Vue.use(MintUI)
 Vue.prototype.$axios = http;
+Vue.prototype.getNews = getNews;
+Vue.prototype.multipart = multipart;
 Vue.prototype.Toast = Toast;
 
 router.beforeEach((to, from, next) => {

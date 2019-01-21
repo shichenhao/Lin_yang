@@ -1,13 +1,13 @@
 <template>
     <div class="container">
-        <Header title="虫草商城"></Header>
+        <Header title="虫草配送"></Header>
         <div class="modelBanner">
             <img src="../../assets/images/shopping-banner.png" alt="">
         </div>
         <div class="shoppingList">
             <div class="shoppingItem" v-for="order in list">
                 <img :src="order.goodspic">
-                <div>
+                <div class="cartItem">
                     <b>{{order.goodsname}}</b>
                     <p>{{order.goodscomment}}</p>
                     <span>￥{{order.newprice}}</span>

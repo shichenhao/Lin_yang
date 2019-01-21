@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="bottom: 0;">
+    <div class="container" style="padding-bottom: 0;">
         <Header></Header>
         <div class="login">
             <div class="loginLogo"></div>

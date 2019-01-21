@@ -12,7 +12,7 @@
                 <p style="border:0 none">{{ info['历史积分'] || 0}}</p>
             </div>
         </div>
-        <div class="moneyBox moneyBox2">
+        <div class="moneyBox moneyBox2" v-if="false">
             <div class="moneyItem">
                 <h2>
                     <span>积分转拨</span>
@@ -83,6 +83,6 @@
 <style scoped>
     .container{
         background: #fff;
-        bottom: 0;
+        padding-bottom: 0;
     }
 </style>

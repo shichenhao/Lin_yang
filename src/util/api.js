@@ -50,6 +50,10 @@ instance.interceptors.response.use(response => {
 const http = (key,params,methods = 'post')=>{
   return instance[methods]('/apitest/', Object.assign({ key },params))
 }
+const getNews = axios.create({
+})
+getNews.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8';
+getNews.defaults.withCredentials=true
 
 //图片上传
 const multipart = axios.create({
@@ -61,5 +65,5 @@ multipart.interceptors.request.use(function (config) {
 })
 
 export {
-    http, multipart
+    http, multipart, getNews
 }

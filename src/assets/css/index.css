@@ -69,9 +69,10 @@
 .shoppingItem {
   border-bottom: 2px solid #e4e4e4;
   padding: .2rem .5rem .2rem 0;
-  height: 2.3rem;
+  min-height: 2.3rem;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: relative;
 }
 
@@ -82,15 +83,19 @@
   border-radius: .1rem;
   position: absolute;
   right: .8rem;
-  bottom: .34rem;
+  bottom: .2rem;
   text-align: center;
   color: #666;
   font-size: .2rem;
 }
 
+.cartItem{
+  flex: 1;
+}
+
 .shoppingItem img {
-  width: 3rem;
-  /*height: 2rem;*/
+  width: 2.5rem;
+  height: 1rem;
   margin-right: .15rem;
 }
 
@@ -108,14 +113,14 @@
 .shoppingItem p {
   font-size: .2rem;
   color: #acadad;
-  padding: .1rem 0 .4rem;
+  padding: .1rem 0 .5rem;
 }
 
 .shoppingItem span {
   font-size: .24rem;
   font-weight: bold;
   position: absolute;
-  bottom: .12rem;
+  bottom: .25rem;
 }
 
 .shoppingAdd, .shoppingRemove {
@@ -130,7 +135,7 @@
   color: #fff;
   position: absolute;
   right: .2rem;
-  bottom: .3rem;
+  bottom: .18rem;
 }
 
 .shoppingRemove {
@@ -167,6 +172,7 @@
 }
 
 .cartBox {
+  min-height: 80vh;
   padding: 1.8rem 0 1.3rem;
   background: url(../images/cart.png) no-repeat #f5f5f5;
   background-size: 100%;
@@ -197,7 +203,7 @@
 .cartBox .cartNumber {
   position: absolute;
   right: .2rem;
-  bottom: .1rem;
+  bottom: .18rem;
 }
 
 .addressNo {
@@ -220,7 +226,7 @@
   padding-left: .7rem;
   background: #fff;
   left: 0;
-  bottom: 55px;
+  bottom: 1rem;
 }
 
 .cartResult b {
@@ -571,7 +577,7 @@
 .newsTit {
   height: .8rem;
   line-height: .8rem;
-  font-size: .14rem;
+  font-size: .24rem;
   color: #005b52;
   font-weight: 700;
   border-bottom: 1px solid #e0e0e0;
@@ -584,7 +590,7 @@
 }
 
 .newsItem h2 {
-  font-size: .14rem;
+  font-size: .2rem;
   font-weight: 400;
 }
 

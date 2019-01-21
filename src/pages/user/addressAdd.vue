@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="bottom: 0;">
+    <div class="container" style="padding-bottom: 0;">
         <Header title="我的地址"></Header>
         <div class="addressAdd">
             <input type="text" v-model="param.name" placeholder="收货人姓名">
@@ -7,7 +7,7 @@
             <div class="inputText" @click="popupVisible = true">{{param.ssq || '收货地址省市区'}}</div>
             <input type="text" v-model="param.addr" placeholder="收货人地址">
             <span class="btn" v-if="noId" @click="add(true)">添加并到转到购物车</span>
-            <span class="btn" v-else @click="add">添加</span>
+            <span class="btn" v-else @click="add(false)">添加</span>
         </div>
         <mt-popup
             v-model="popupVisible"

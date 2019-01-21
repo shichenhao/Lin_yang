@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="bottom: 0;">
+    <div class="container" style="padding-bottom: 0;">
         <Header title="注册中心"></Header>
         <div class="login register">
             <ul>
@@ -38,7 +38,7 @@
         <div class="registerOk" v-if="isOk">
             <span>{{param.name}} {{getGrender(param.idnumber || 0)}}：</span>
             <p>
-                感谢您注册成为“绿麒麟 S7 富通虫草茶”，{{getLev(param.level)}}请等待上级代理商激活并调配库值。
+                感谢您注册成为“绿麒麟 S7 富通虫草茶”，{{getLev(param.level)}}请等待上级代理商激活并调配库存。
             </p>
             <img src="../../assets/images/logoDown2.png">
         </div>
@@ -60,15 +60,19 @@
         isRegister:true,
         levelList:[
           {
-            val:'1',
-            text:'一级代理商'
+            val:6,
+            text:'合伙人'
           },
           {
-            val:'2',
-            text:'二级代理商'
+            val:5,
+            text:'总代'
           },
           {
-            val:'3',
+            val:4,
+            text:'一级代理'
+          },
+          {
+            val:3,
             text:'团购客户'
           },
         ],
@@ -80,7 +84,7 @@
           key: 'Regist',
           cellphone: null,
           password: null,
-          level:'1',
+          level: '',
           sid:localStorage.getItem('sid')
         }
       }
@@ -148,11 +152,15 @@
 
     },
     mounted() {
+      /*
       if(this.$router.history.current.query.isRegister){
         this.isRegister = false
         this.param.level =  0
-      }
-
+      }*/
+      console.log(this.$route.query)
+      this.level = this.$route.query.level || localStorage.getItem('level') && JSON.parse(localStorage.getItem('level'))
+      this.levelList = this.levelList.filter(item=> item.val <= this.level)
+      this.param.level = this.level
     }
   }
 </script>

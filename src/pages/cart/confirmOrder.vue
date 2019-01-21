@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="container">
+        <div class="container" style="padding-bottom:1.2rem">
             <Header title="确认订单"></Header>
             <div class="orderBox">
                 <div class="address" v-if="address.user_name" @click="selectAdds">
@@ -35,13 +35,13 @@
                 <div class="orderMoney">
                     <ul>
                         <li>
-                            库值
+                            库存
                             <span>
                                 <img src="./../../assets/images/money-icon1.png" alt="">
                                 {{info['库值']}}
                             </span>
                         </li>
-                        <li>
+                        <li v-if="false">
                             奖金
                             <span>
                                 <img src="./../../assets/images/money-icon2.png" alt="">

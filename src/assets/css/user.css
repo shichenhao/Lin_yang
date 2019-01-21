@@ -40,6 +40,7 @@
 }
 
 .login ul li {
+  font-size: .28rem;
   width: 100%;
   display: flex;
   align-items: center;
@@ -50,7 +51,7 @@
   height: 1rem;
   border: 0 none;
   font-size: .3rem;
-  border-bottom: 2px solid #e1e1e1;
+  border-bottom: 1px solid #e1e1e1;
   vertical-align: middle;
   background: #fff;
 }
@@ -167,11 +168,19 @@
   color: #fff;
 }
 
-.userImg img {
+.userImg .userHead {
   width: 1.1rem;
   height: 1.1rem;
   border-radius: 1.1rem;
   margin-right: .25rem;
+  overflow: hidden;
+  border-radius: 1.1rem;
+  background: url("../../assets/images/head.png") no-repeat;
+  background-size: 100%;
+}
+
+.userImg .userHead img{
+  max-width: 100%;
 }
 
 .userImg .userLogo {
@@ -179,18 +188,16 @@
   height: auto;
   position: absolute;
   left: .75rem;
-  top: 1.65rem;
+  top: 2.2rem;
 }
 
 .userImg div span {
-  border: 2px solid #eace76;
-  border-radius: .3rem;
+  margin-bottom: -.04rem;
   color: #eace76;
-  padding: 0 .14rem;
-  height: .3rem;
-  line-height: .25rem;
+  height: .4rem;
   display: inline-block;
-  font-size: .2rem;
+  background: url("../images/score_03.png") repeat-x;
+  background-size: .4rem;
 }
 
 .userImg div p {
@@ -205,14 +212,68 @@
 }
 
 .userNav ul li {
-  font-size: .26rem;
+  font-size: .32rem;
   color: #333;
   height: 1rem;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid #ddd;
-  padding-left: .6rem;
+  border-bottom: 1px solid #ddd;
+  padding-left: .7rem;
   position: relative;
+}
+
+.userNav ul li.lout{
+  height: auto;
+  padding: .2rem .55rem .2rem .2rem;
+}
+
+.userNav ul li.lout:after{
+  display: none;
+}
+
+.userNav ul li.headPic{
+  height: 1.5rem;
+}
+.userNav ul li.headPic label{
+  position: absolute;
+  left: auto;
+  right: .6rem;
+  top: .25rem;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: url("../../assets/images/head.png") no-repeat;
+  background-size: 100%;
+}
+
+.userNav ul li.headPic:after {
+  content: '';
+  position: absolute;
+  right: .3rem;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  display: block;
+  width: .1rem;
+  height: .1rem;
+  border-top: 2px solid #ccc;
+  border-right: 2px solid #ccc;
+  transform: rotate(45deg);}
+
+.userNav ul li.headPic img{
+  max-width: 100%;
+  position: static;
+  width: auto;
+  height: auto;
+}
+
+
+
+.userNav2 ul li.headPic img{
+  filter:grayscale(0%);
+  opacity: 1;
+
 }
 
 .userNav ul li:after {
@@ -251,8 +312,10 @@
   top: 0;
   bottom: 0;
   margin: auto 0;
-  height: .31rem;
+  height: .4rem;
   width: auto;
+  filter: grayscale(100%);
+  opacity: .5;
 }
 
 .userNav ul li:last-child {
@@ -333,8 +396,11 @@
   color: #4b4b4b;
   font-size: .3rem;
   width: 100%;
+  box-sizing: border-box;
 }
-
+.moneyBox3 ul li input, .moneyBox3 ul li select {
+  padding: 0 .2rem;
+}
 
 .moneyBox2 ul li.pad{
   position: relative;
@@ -393,7 +459,7 @@
 }
 
 .addressList a {
-  position: absolute;
+  position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
@@ -413,4 +479,39 @@
   color: #005b53;
   cursor: pointer;
   padding: 10px;
+}
+
+.popList{
+  position: absolute;
+  left:0;
+  top:0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  overflow: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.popListTit{
+  font-size: .32rem;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+  line-height: 1rem;
+  padding: 0 .2rem;
+}
+
+.popList span{
+  font-size: .3rem;
+  font-weight: bold;
+  float: right;
+}
+
+.popList ul li{
+  height: .8rem;
+  line-height: .8rem;
+  font-size: .3rem;
+  padding: 0 0.3rem;
+  border-bottom: 1px solid #ccc;
 }

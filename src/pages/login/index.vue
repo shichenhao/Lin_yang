@@ -1,5 +1,5 @@
 <template>
-    <div class="container" style="bottom: 0">
+    <div class="container" style="padding-bottom: 0">
         <Header></Header>
         <div class="login">
             <div class="loginLogo"></div>
@@ -11,11 +11,11 @@
                     <input type="password" v-model="param.password" placeholder="请输入密码">
                 </li>
                 <li>
-                    <a class="btn" @click="login">登　　录</a>
+                    <a class="btn" :class="{btnDisabled : !param.cellphone || !param.password}" @click="login">登　　录</a>
                 </li>
                 <li class="loginDown">
                     <router-link to="/register">立即注册</router-link>
-                    <router-link v-if="false" to="/retrieve">忘记密码？</router-link>
+                    <router-link to="/retrieve">忘记密码？</router-link>
                 </li>
             </ul>
             <div class="loginBottom"></div>
@@ -41,20 +41,22 @@
     },
     methods: {
       login() {
-        this.$axios("Login", this.param).then((res) => {
-          if(res.result){
-            Toast('登录成功!');
-            localStorage.setItem('token',res.token);
-            this.getUserInfo(res.token);
-            this.$router.push('/')
-          }
-        })
+        if(this.param.password && this.param.cellphone){
+          this.$axios("Login", this.param).then((res) => {
+            if(res.result){
+              Toast('登录成功!');
+              localStorage.setItem('token',res.token);
+              this.getUserInfo(res.token);
+            }
+          })
+        }
       },
       getUserInfo(token){ // 获取用户信息
         this.$axios("GetMemberInfo", {token}).then((res) => {
           if(res.result){
             localStorage.setItem('userInfo',JSON.stringify(res))
             //this.$router.push('/')
+            this.$router.push('/')
           }
         })
       },

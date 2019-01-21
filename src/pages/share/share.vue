@@ -1,6 +1,6 @@
 <template>
     <div style="padding-top: 1rem">
-        <Header title="一封信一份情"></Header>
+        <Header title="云次麟集灵草筑梦"></Header>
         <img :src="img" alt="">
     </div>
 </template>
@@ -15,14 +15,13 @@
           return {
             img:'',
             param:{
-              cellphone:localStorage.getItem('userInfo') && JSON.parse(localStorage.getItem('userInfo')).cellphone,
               token:localStorage.getItem('token') || ''
             }
           }
       },
       methods:{
         getCode(){
-          this.$axios("GetTryCode", this.param).then((res) => {
+          this.$axios("GetQRCode", this.param).then((res) => {
             this.img = res.qrcode
           })
         }

@@ -19,7 +19,6 @@
       data () {
           return {
             param:{
-              cellphone:localStorage.getItem('userInfo') && JSON.parse(localStorage.getItem('userInfo')).cellphone,
               token:localStorage.getItem('token') || ''
             },
             list:[]

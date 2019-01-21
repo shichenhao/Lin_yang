@@ -8,7 +8,7 @@
                         <label @click="check(item)" :class="{isCheck : item.selected == 1}"></label>
                     </div>
                     <img :src="item.goodspic" alt="">
-                    <div>
+                    <div class="cartItem">
                         <b>{{item.goodsname}}</b>
                         <p>{{item.goodscomment || cartInfo.content}}</p>
                         <span>￥{{item.newprice || cartInfo.price}}</span>
@@ -128,6 +128,7 @@
       },
       mounted(){
         this.getList();
+        // localStorage.setItem('msgArr',true)
       }
   }
 </script>

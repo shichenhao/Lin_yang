@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container containers" :class="{zIndex : zIndex}">
         <Header title="即刻体验"></Header>
         <div class="modelBanner">
             <img src="../../assets/images/experience-banner.png" alt="">
@@ -55,11 +55,7 @@
                     </li>
                     <li>
                         <span>联系电话</span>
-                        <input type="text" v-model="param.cellphone" placeholder="填写申请人手机号码" />
-                    </li>
-                    <li>
-                        <span>收货地址</span>
-                        <div class="inputText" @click="popupVisible = true">{{param.ssq || '收货地址省市区'}}</div>
+                        <input type="text" v-model="param.cellphone" placeholder="填写申请人手机号码"/>
                     </li>
                     <li>
                         <span>体验数量</span>
@@ -71,31 +67,39 @@
                         </div>
                     </li>
                     <li>
-                        <input style="margin-left: 0" type="text" v-model="param.address2" placeholder="请填写详细收货地址" />
+                        <span>收货地址</span>
+                        <div class="inputText" @click="popupVisible = true,zIndex = true">{{param.ssq || '收货地址省市区'}}</div>
+                    </li>
+                    <li>
+                        <input style="margin-left: 0" type="text" v-model="param.address2" placeholder="请填写详细收货地址"/>
                     </li>
                 </ul>
                 <h4>选择试用的原因(勾选)</h4>
                 <div class="checkboxList">
                     <mt-radio
-                        v-model="value"
-                        :options="options">
+                            v-model="value"
+                            :options="options">
                     </mt-radio>
                 </div>
                 <h4>自身存在的健康问题或不良习惯(勾选)</h4>
                 <div class="checkboxList checkboxList2">
                     <mt-radio
-                        v-model="value2"
-                        :options="options2">
+                            v-model="value2"
+                            :options="options2">
                     </mt-radio>
                 </div>
-                <span class="btn btn2" :class="{btn3 : param.name && param.bathday && param.cellphone && param.gender && param.address2 && param.ssq}" @click="submit">提交申请</span>
+                <span class="btn btn2"
+                      :class="{btn3 : param.name && param.bathday && param.cellphone && param.gender && param.address2 && param.ssq}"
+                      @click="submit">提交申请</span>
                 <div class="experienceAgreement" v-if="false">
-                    点击提交按钮，即表示已阅读并同意 <router-link to="/">《体验条款》</router-link>
+                    点击提交按钮，即表示已阅读并同意
+                    <router-link to="/">《体验条款》</router-link>
                 </div>
             </div>
             <span class="after" @click="isActive(2)"></span>
         </div>
-        <div class="experienceBox experienceBox2 experienceBox3" v-if="param.level" :class="{active : active.active3,clickNo : !param.level || param.level!=1}">
+        <div class="experienceBox experienceBox2 experienceBox3" v-if="param.level"
+             :class="{active : active.active3,clickNo : !param.level || param.level!=1}">
             <h2 @click="isActive(3)">
                 <span>体验反馈</span>
             </h2>
@@ -131,14 +135,14 @@
             <span class="after" @click="isActive(3)"></span>
         </div>
         <mt-datetime-picker
-            ref="picker"
-            v-model="pickerVisible"
-            type="date"
-            :startDate="new Date('1950-01-01')"
-            year-format="{value}年"
-            month-format="{value}月"
-            date-format="{value}日"
-            @confirm="handleBathday">
+                ref="picker"
+                v-model="pickerVisible"
+                type="date"
+                :startDate="new Date('1950-01-01')"
+                year-format="{value}年"
+                month-format="{value}月"
+                date-format="{value}日"
+                @confirm="handleBathday">
         </mt-datetime-picker>
         <mt-popup
                 v-model="popupVisible"
@@ -152,278 +156,291 @@
   import Header from '@/components/common/Header.vue';
   import Check from '../../util/check'
   import myaddress from '../../util/citys'
-  import { Toast } from 'mint-ui';
+  import {Toast} from 'mint-ui';
+
   export default {
-      name: 'experience',
-      components:{
-          Header,
-      },
-      data () {
-          return {
-            popupVisible:false,
-            active:{
-              active1:false,
-              active2:true,
-              active3:false,
-            },
-            pickerVisible:'',
-              param:{
-                sid:'',
-                bathday:'',
-                gender:null,
-                cellphone:"",
-                name:"",
-                address:"",
-                address2:"",
-                province:'',
-                city:'',
-                area:'',
-                addr:'',
-                orderinfo:"体验装1份",
-                level:localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).level : '',
-                totalprice:"47.7",
-                uid:localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).UID : '',
-                feedback:"反馈信息"
-              },
-            slots: [
-              {
-                flex: 1,
-                values: myaddress,
-                defaultIndex: 110000,
-                className: 'slot1',
-                textAlign: 'center'
-              }, {
-                divider: true,
-                content: '-',
-                className: 'slot2'
-              }, {
-                flex: 1,
-                values: myaddress[0].children,
-                defaultIndex: 0,
-                className: 'slot3',
-                textAlign: 'center'
-              }, {
-                divider: true,
-                content: '-',
-                className: 'slot4'
-              }, {
-                flex: 1,
-                values: myaddress[0].children[0].children,
-                defaultIndex: 0,
-                className: 'slot5',
-                textAlign: 'center'
-              }
-            ],
-              value:'活动价格给力',
-              value2:'失眠',
-              value3:'是',
-              value4:'失眠',
-              value5:'是',
-              gender:[
-                  {
-                      label: '男',
-                      value: 'A',
-                  },
-                  {
-                      label: '女',
-                      value: 'B',
-                  }
-              ],
-              count:[
-                  {
-                      label: '1份',
-                      value: '1',
-                  },
-                  {
-                      label: '2份',
-                      value: '2',
-                  }
-              ],
-              options:[
-                  {
-                      label: '活动价格给力',
-                      value: '活动价格给力',
-                  },
-                  {
-                      label: '朋友强烈推荐',
-                      value: '朋友强烈推荐',
-                  },
-                  {
-                      label: '为改善健康状况做尝试',
-                      value: '为改善健康状况做尝试',
-                  },
-                  {
-                      label: '希望成为代理商',
-                      value: '希望成为代理商',
-                  }
-              ],
-              options2:[
-                  {
-                      label: '失眠',
-                      value: '失眠',
-                  },
-                  {
-                      label: '肾虚',
-                      value: '肾虚',
-                  },
-                  {
-                      label: '便秘',
-                      value: '便秘',
-                  },
-                  {
-                      label: '吸烟',
-                      value: '吸烟',
-                  }
-              ],
-              options3:[
-                  {
-                      label: '是',
-                      value: '是',
-                  },
-                  {
-                      label: '否',
-                      value: '否',
-                  }
-              ],
-              options4:[
-                  {
-                      label: '失眠',
-                      value: '失眠',
-                  },
-                  {
-                      label: '肾虚',
-                      value: '肾虚',
-                  },
-                  {
-                      label: '便秘',
-                      value: '便秘',
-                  }
-              ]
-          }
-      },
-      methods:{
-        onValuesChange (picker, values) {
-          if (!values[0]) {
-            this.$nextTick(() => {
-              if (this.myAdress) {
-                // 赋默认值
-              } else {
-                picker.setValues([myaddress[0], myaddress[0].children[0], myaddress[0].children[0].children[0]])
-              }
-            })
-          } else {
-            picker.setSlotValues(1, values[0].children)
-            let town = []
-            if (values[1]) {
-              town = values[1].children
-            }
-            picker.setSlotValues(2, town)
-            this.param.province = values[0].label
-            this.param.city = values[1].label
-            this.param.area = values[2].label,
-              this.param.ssq = this.param.province +'-'+ this.param.city +'-'+  this.param.area
-          }
+    name: 'experience',
+    components: {
+      Header,
+    },
+    data() {
+      return {
+        scrollH: 0,
+        zIndex: false,
+        popupVisible: false,
+        active: {
+          active1: false,
+          active2: true,
+          active3: false,
         },
-        checkAddrs(){
-          this.popupVisible= false
+        pickerVisible: '',
+        param: {
+          count: '2',
+          sid: '',
+          bathday: '',
+          gender: 'B',
+          cellphone: "",
+          name: "",
+          address: "",
+          address2: "",
+          province: '',
+          city: '',
+          area: '',
+          addr: '',
+          orderinfo: "体验装1份",
+          level: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).level : '',
+          totalprice: "47.7",
+          uid: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).UID : '',
+          feedback: "反馈信息"
         },
-        isActive(type){
-          if(type === 1){
-            this.active.active1 = !this.active.active1
+        slots: [
+          {
+            flex: 1,
+            values: myaddress,
+            defaultIndex: 110000,
+            className: 'slot1',
+            textAlign: 'center'
+          }, {
+            divider: true,
+            content: '-',
+            className: 'slot2'
+          }, {
+            flex: 1,
+            values: myaddress[0].children,
+            defaultIndex: 0,
+            className: 'slot3',
+            textAlign: 'center'
+          }, {
+            divider: true,
+            content: '-',
+            className: 'slot4'
+          }, {
+            flex: 1,
+            values: myaddress[0].children[0].children,
+            defaultIndex: 0,
+            className: 'slot5',
+            textAlign: 'center'
           }
-          if(type === 2){
-            this.active.active2 = !this.active.active2
+        ],
+        value: '活动价格给力',
+        value2: '失眠',
+        value3: '是',
+        value4: '失眠',
+        value5: '是',
+        gender: [
+          {
+            label: '男',
+            value: 'A',
+          },
+          {
+            label: '女',
+            value: 'B',
           }
-          if(type === 3){
-            if(this.param.level != 1 || !this.param.level){
-
-            }else{
-              this.active.active3 = !this.active.active3
-            }
+        ],
+        count: [
+          {
+            label: '1份',
+            value: '1',
+          },
+          {
+            label: '2份',
+            value: '2',
           }
-        },
-        formatDate(date) {
-          const y = date.getFullYear()
-          let m = date.getMonth() + 1
-          m = m < 10 ? '0' + m : m
-          let d = date.getDate()
-          d = d < 10 ? ('0' + d) : d
-          return y + '-' + m + '-' + d
-        },
-        returnTop(){
-          //document.querySelector("#a1").scrollIntoView(true);
-          this.$router.push('/share')
-        },
-        submit() {
-          if(!this.param.name || !this.param.bathday || !this.param.cellphone || !this.param.gender || !this.param.address2 || !this.param.ssq){
-            return false
+        ],
+        options: [
+          {
+            label: '活动价格给力',
+            value: '活动价格给力',
+          },
+          {
+            label: '朋友强烈推荐',
+            value: '朋友强烈推荐',
+          },
+          {
+            label: '为改善健康状况做尝试',
+            value: '为改善健康状况做尝试',
+          },
+          {
+            label: '希望成为代理商',
+            value: '希望成为代理商',
           }
-          if(!this.param.name || !this.param.bathday || !this.param.cellphone || !this.param.gender || !this.param.address2 || !this.param.ssq){
-            Toast('请填写个人信息!');
-            return false
+        ],
+        options2: [
+          {
+            label: '失眠',
+            value: '失眠',
+          },
+          {
+            label: '肾虚',
+            value: '肾虚',
+          },
+          {
+            label: '便秘',
+            value: '便秘',
+          },
+          {
+            label: '吸烟',
+            value: '吸烟',
           }
-
-          if(!Check.phone(this.param.cellphone)){
-            this.Toast('请填写正确的手机号！')
-            return false;
+        ],
+        options3: [
+          {
+            label: '是',
+            value: '是',
+          },
+          {
+            label: '否',
+            value: '否',
           }
-
-          this.param.address = this.param.province +'-'+ this.param.city +'-'+  this.param.area + this.param.address2
-
-          let feedback = [];
-          feedback.push(this.value,this.value2)
-          this.param.feedback = feedback.toString()
-          this.$axios("TryOrder", this.param).then((res) => {
-            if(res.result){
-              Toast('下单成功!');
-              //console.log(`${res.payurl}?orderid=${res.member}&totalprice=${this.param.totalprice}`)
-              window.location.href= `${res.payurl}?orderid=${res.member}&totalprice=${this.param.totalprice}`
+        ],
+        options4: [
+          {
+            label: '失眠',
+            value: '失眠',
+          },
+          {
+            label: '肾虚',
+            value: '肾虚',
+          },
+          {
+            label: '便秘',
+            value: '便秘',
+          }
+        ]
+      }
+    },
+    methods: {
+      onValuesChange(picker, values) {
+        if (!values[0]) {
+          this.$nextTick(() => {
+            if (this.myAdress) {
+              // 赋默认值
+            } else {
+              picker.setValues([myaddress[0], myaddress[0].children[0], myaddress[0].children[0].children[0]])
             }
           })
-        },
-        feedback() {
-          let feedback = [];
-          let params = {}
-          feedback.push(this.value3,this.value4,this.value5)
-          params.feedback = feedback.toString()
-          params.token = localStorage.getItem('token')
-          this.$axios("Feedback", params).then((res) => {
-            if(res.result){
-              Toast('反馈成功!');
-              //window.location.href= res.payurl
-            }
-          })
-        },
-        bathdayShow(){
-          this.$refs.picker.open();
-        },
-        handleBathday(){
-          this.param.bathday = this.formatDate(this.pickerVisible)
+        } else {
+          picker.setSlotValues(1, values[0].children)
+          let town = []
+          if (values[1]) {
+            town = values[1].children
+          }
+          picker.setSlotValues(2, town)
+          this.param.province = values[0].label
+          this.param.city = values[1].label
+          this.param.area = values[2].label,
+            this.param.ssq = this.param.province + '-' + this.param.city + '-' + this.param.area
         }
       },
-      mounted(){
-        this.param.sid = this.$router.history.current.query.sid || localStorage.getItem('sid') || ''
+      checkAddrs() {
+        this.popupVisible = false
+        this.zIndex = false
+      },
+      isActive(type) {
+        if (type === 1) {
+          this.active.active1 = !this.active.active1
+        }
+        if (type === 2) {
+          this.active.active2 = !this.active.active2
+        }
+        if (type === 3) {
+          if (this.param.level != 1 || !this.param.level) {
+
+          } else {
+            this.active.active3 = !this.active.active3
+          }
+        }
+      },
+      formatDate(date) {
+        const y = date.getFullYear()
+        let m = date.getMonth() + 1
+        m = m < 10 ? '0' + m : m
+        let d = date.getDate()
+        d = d < 10 ? ('0' + d) : d
+        return y + '-' + m + '-' + d
+      },
+      returnTop() {
+        //document.querySelector("#a1").scrollIntoView(true);
+        this.$router.push('/share')
+      },
+      submit() {
+        if (!this.param.name || !this.param.bathday || !this.param.cellphone || !this.param.gender || !this.param.address2 || !this.param.ssq) {
+          return false
+        }
+        if (!this.param.name || !this.param.bathday || !this.param.cellphone || !this.param.gender || !this.param.address2 || !this.param.ssq) {
+          Toast('请填写个人信息!');
+          return false
+        }
+
+        if (!Check.phone(this.param.cellphone)) {
+          this.Toast('请填写正确的手机号！')
+          return false;
+        }
+
+        this.param.address = this.param.province + '-' + this.param.city + '-' + this.param.area + this.param.address2
+
+        let feedback = [];
+        feedback.push(this.value, this.value2)
+        this.param.feedback = feedback.toString()
+        this.$axios("TryOrder", this.param).then((res) => {
+          if (res.result) {
+            Toast('下单成功!');
+            //console.log(`${res.payurl}?orderid=${res.member}&totalprice=${this.param.totalprice}`)
+            window.location.href = `${res.payurl}?orderid=${res.member}&totalprice=${this.param.totalprice}`
+          }
+        })
+      },
+      feedback() {
+        let feedback = [];
+        let params = {}
+        feedback.push(this.value3, this.value4, this.value5)
+        params.feedback = feedback.toString()
+        params.token = localStorage.getItem('token')
+        this.$axios("Feedback", params).then((res) => {
+          if (res.result) {
+            Toast('反馈成功!');
+            //window.location.href= res.payurl
+          }
+        })
+      },
+      bathdayShow() {
+        this.$refs.picker.open();
+        this.zIndex = true
+        this.scrollH = document.documentElement.scrollTop
+      },
+      handleBathday() {
+        this.param.bathday = this.formatDate(this.pickerVisible)
+        this.zIndex = false
+        document.documentElement.scrollTop = this.scrollH
       }
+    },
+    mounted() {
+      this.param.sid = this.$router.history.current.query.sid || localStorage.getItem('sid') || ''
+    }
   }
 </script>
 
 <style>
-    .inputText{
+    .inputText {
         padding-left: .4rem;
         color: #999;
     }
-    .mint-radiolist-label{
+
+    .mint-radiolist-label {
         padding: 0;
     }
-    .checkboxList2 .mint-radiolist{
+
+    .checkboxList2 .mint-radiolist {
         padding: .1rem 0;
         display: flex;
         margin-left: -12px;
     }
-    .mint-cell-wrapper{
-        background: #fff!important;
+
+    .mint-cell-wrapper {
+        background: #fff !important;
     }
-    .checkboxList2 .mint-radiolist-label{
+
+    .checkboxList2 .mint-radiolist-label {
         white-space: nowrap;
     }
 </style>

@@ -8,10 +8,7 @@
                     <input type="text" v-model="param.cellphone" placeholder="请输入手机号">
                 </li>
                 <li>
-                    <input type="password" v-model="param.password" placeholder="请输入密码">
-                </li>
-                <li>
-                    <a class="btn" @click="login">找回密码</a>
+                    <a class="btn" :class="{btnDisabled : !param.cellphone}" @click="login">找回密码</a>
                 </li>
                 <li class="loginDown">
                     <router-link to="/login">立即登录</router-link>
@@ -40,10 +37,13 @@
     },
     methods: {
       login() {
-        this.$axios("SendSMSCode", this.param).then((res) => {
-          if(res.result){
-          }
-        })
+        if(this.param.cellphone){
+          this.$axios("SendSMSCode", this.param).then((res) => {
+            if(res.result){
+              Toast('密码已发送到您的手机上请及时查收!');
+            }
+          })
+        }
       },
 
     },

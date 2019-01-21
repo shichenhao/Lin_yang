@@ -14,12 +14,12 @@
                 </div>
                 <div class="newsRight">
                     <div class="newsTit">公司新闻</div>
-                    <div class="newsCont">
-                        <div class="newsItem" v-for="item in list" :key="item.news_id" @click="newsCont(item.news_text)">
-                            <h2>{{item.news_title}}</h2>
-                            <div v-html="item.news_text">
-
-                            </div>
+                    <div class="newsCont"
+                         v-infinite-scroll="loadMore"
+                         infinite-scroll-disabled="loading"
+                         infinite-scroll-distance="10">
+                        <div class="newsItem" v-for="item in list" :key="item.news_id" @click="newsCont(item.content.news_item[0].content)">
+                            <h2>{{item.content.news_item[0].title}}</h2>
                         </div>
                     </div>
                 </div>
@@ -40,11 +40,12 @@
       },
       data () {
           return {
+            loading:false,
             list:[],
             content:'',
             param:{
-              start:'1',
-              count:'10',
+              offset:0,
+              count:10
             }
           }
       },
@@ -52,16 +53,33 @@
         getList(){ // 查询购物车列表
           this.$axios("GetNews", this.param).then((res) => {
             if(res.result){
-              this.list = res.Members
+              this.list = res.news ? JSON.parse(res.news).item : []
             }
           })
+        },
+        loadMore() { //下拉加载数据
+          if(this.param.count == 10){
+            let newStart = this.param.offset;
+            this.param.offset=newStart+1;
+            this.loading = true;
+            //setTimeout(() => {
+            this.$axios('GetNews',this.param).then((res)=>{
+              console.log(JSON.parse(res.news).item.length)
+              if(res.news && res.result){
+                this.param.count=JSON.parse(res.news).item.length
+                this.list=[...this.list, ...JSON.parse(res.news).item]
+              }
+              this.loading = false;
+            })
+            //}, 1500);
+          }
         },
         newsCont(content){
           this.content = content
         }
       },
       mounted(){
-        this.getList();
+        // this.getList();
       }
   }
 </script>
