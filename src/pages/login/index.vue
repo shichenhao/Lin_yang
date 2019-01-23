@@ -44,6 +44,7 @@
         if(this.param.password && this.param.cellphone){
           this.$axios("Login", this.param).then((res) => {
             if(res.result){
+              console.log(res)
               Toast('登录成功!');
               localStorage.setItem('token',res.token);
               this.getUserInfo(res.token);
@@ -54,6 +55,7 @@
       getUserInfo(token){ // 获取用户信息
         this.$axios("GetMemberInfo", {token}).then((res) => {
           if(res.result){
+            localStorage.setItem('level', res.level)
             localStorage.setItem('userInfo',JSON.stringify(res))
             //this.$router.push('/')
             this.$router.push('/')

@@ -99,7 +99,7 @@
     },
     created(){
       localStorage.setItem('sid', this.$router.history.current.query.sid || localStorage.getItem('sid') || '')
-      localStorage.setItem('level', this.$router.history.current.query.level || localStorage.getItem('level') || 4)
+      // localStorage.setItem('level', this.$router.history.current.query.level || localStorage.getItem('level') || 4)
       this.loginName = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).realname : '登录'
     }
   }

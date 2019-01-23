@@ -3,7 +3,7 @@
         <Header title="拓客信息"></Header>
         <div class="teamBox">
             <div class="teamItem" v-for="item in list" :key="item.MemberUID">
-                推荐人ID：{{item.MemberIntro}}(ID:{{item.MemberUID}}) 代理级别：{{item.MemberLevel}}S<br />
+                推荐人ID：{{item.MemberIntro}}(ID:{{item.MemberUID}}) 代理级别：{{leveTxt(item.MemberLevel)}}<br />
                 库存：{{item.MemberGoods}}奖金：{{item.MemberReward}}
             </div>
             <div class="listNull" v-if="!list.length && !isLoading">
@@ -30,6 +30,25 @@
           }
       },
       methods:{
+        leveTxt(val){
+          let text = ''
+          if(val == 6){
+            text = '合伙人'
+          }
+          else if(val == 5){
+            text = '总代'
+          }
+          else if(val == 4){
+            text = '一级代理'
+          }
+          else if(val == 3){
+            text = '团购客户'
+          }
+          else if(val == 1){
+            text = '体验客户'
+          }
+          return text
+        },
         getInit() {
           this.isLoading = true
           this.$axios("GetTeamInfo", this.param).then((res) => {

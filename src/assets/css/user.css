@@ -182,6 +182,8 @@
 
 .userImg .userHead img{
   max-width: 100%;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .userImg .userLogo {
@@ -197,8 +199,10 @@
   color: #eace76;
   height: .25rem;
   display: inline-block;
-  background: url("../images/score_03.png") repeat-x;
-  background-size: .25rem;
+}
+
+.userImg div span img{
+  width: .25rem;
 }
 
 .userImg div p {
@@ -265,8 +269,8 @@
 .userNav ul li.headPic img{
   max-width: 100%;
   position: static;
-  width: auto;
-  height: auto;
+  width: 1rem;
+  height: 1rem;
 }
 
 

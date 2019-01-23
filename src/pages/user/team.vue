@@ -44,6 +44,9 @@
           else if(val == 3){
             text = '团购客户'
           }
+          else if(val == 1){
+            text = '体验客户'
+          }
           return text
         },
         getInit() {

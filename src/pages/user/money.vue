@@ -16,9 +16,14 @@
                     <span>库存分配</span>
                 </h2>
                 <ul>
+                    <li v-if="levelList.length">
+                        <select v-model="param.level" @change="handleChange">
+                            <option :value="item.val" v-for="item in levelList">{{item.html}}</option>
+                        </select>
+                    </li>
                     <li v-if="toList.length">
                         <select v-model="param.toid">
-                            <option :value="item.MemberUID" v-for="item in toList">{{item.MemberName}}</option>
+                            <option :value="item.MemberUID" v-for="item in toList">{{item.MemberUID + ' - ' + item.MemberName+ ' - ' + leveTxt(item.MemberLevel)}}</option>
                         </select>
                     </li>
                     <li>
@@ -62,12 +67,66 @@
         info:{},
         popList:[],
         toList:[],
+        toList2:[],
+        levelList:[{
+          val:0,
+          html:'全部'
+        },{
+          val:1,
+          html:'体验客户'
+        },{
+          val:3,
+          html:'团购客户'
+        },{
+          val:4,
+          html:'一级代理'
+        },{
+          val:5,
+          html:'总代'
+        },{
+          val:6,
+          html:'合伙人'
+        }],
         param:{
+          level:0,
           token:localStorage.getItem('token'),
         }
       }
     },
     methods:{
+      handleChange(){
+        let val = this.param.level
+        this.toList = this.toList2.filter(item=>{
+          if(val === 0){
+            return item
+          } else{
+            return item.MemberLevel == val
+          }
+        })
+        if(!this.toList.length){
+          this.toList = [{MemberUID:'',MemberName:'无分配人'}]
+        }
+        this.param.toid = this.toList[0] && this.toList[0].MemberUID
+      },
+      leveTxt(val){
+        let text = ''
+        if(val == 6){
+          text = '合伙人'
+        }
+        else if(val == 5){
+          text = '总代'
+        }
+        else if(val == 4){
+          text = '一级代理'
+        }
+        else if(val == 3){
+          text = '团购客户'
+        }
+        else if(val == 1){
+          text = '体验客户'
+        }
+        return text
+      },
       showList(){
         this.popListShow = true
         const param = {
@@ -114,6 +173,7 @@
       getTeam(){
         this.$axios("GetTeamInfo", this.param).then((res) => {
           this.toList = res.teaminfo.length ? res.teaminfo : [{MemberUID:'',MemberName:'无分配人'}]
+          this.toList2 = res.teaminfo.length ? res.teaminfo : [{MemberUID:'',MemberName:'无分配人'}]
           this.param.toid = res.teaminfo[0] && res.teaminfo[0].MemberUID
         })
       },

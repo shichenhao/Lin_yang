@@ -92,7 +92,10 @@
           this.param.pic = formData
           this.multipart.post("/apitest/", formData).then((res) => {
             if(res.data.result){
-              this.getInit();
+              Toast('修改成功');
+              setTimeout(()=>{
+                window.location.reload()
+              }, 500)
             }else{
               Toast(res.data.message);
             }

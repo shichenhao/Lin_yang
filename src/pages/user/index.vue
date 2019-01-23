@@ -10,7 +10,10 @@
                     立即登录
                 </router-link>
                 <div v-show="isLogin" @click="routerPath('/user/info')">
-                    {{userInfo.realname}} <span :style="{width:(userInfo.level * 0.25)+'rem'}"></span>
+                    {{userInfo.realname}}
+                    <span v-if="userInfo.level">
+                        <img v-for="item in parseInt(userInfo.level)" src="../../assets/images/score_03.png" alt="">
+                    </span>
                     <p>ID:{{userInfo.UID}}</p>
                 </div>
             </div>
@@ -52,7 +55,7 @@
                         <img src="../../assets/images/icon3.png" />
                         分享体验
                     </li>
-                    <li class="lout">
+                    <li class="lout" v-if="isLogin">
                         <a class="btn" @click="lout">退出登录</a>
                     </li>
                 </ul>

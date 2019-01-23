@@ -30,7 +30,30 @@
             </div>
             <span class="after" @click="isActive(1)"></span>
         </div>
-        <div class="experienceBox experienceBox2" id="a1" :class="{active : active.active2 }">
+        <div class="experienceBox experienceBox2" id="a1" :class="{active : active.active2 }" v-if="param.level == 1">
+            <h2 @click="isActive(2)">
+                <span>我的积分</span>
+            </h2>
+            <p class="jfCont" v-if="jfInfo">当前积分：<span>{{ jfInfo['当前积分'] || 0}}</span></p>
+            <p class="jfCont" v-if="jfInfo">历史积分：<span>{{ jfInfo['历史积分'] || 0}}</span></p>
+            <span class="after" @click="isActive(2)"></span>
+        </div>
+        <div class="experienceBox experienceBox2" id="a1" :class="{active : active.active2 }" v-if="param.level == 3 || param.level == 4 || param.level == 5 || param.level == 6">
+            <h2 @click="isActive(2)">
+                <span>拓客信息</span>
+            </h2>
+            <div class="teamBox">
+                <div class="teamItem" v-for="item in tokerList" :key="item.MemberUID">
+                    推荐人ID：{{item.MemberIntro}}(ID:{{item.MemberUID}}) 代理级别：{{leveTxt(item.MemberLevel)}}<br />
+                    库存：{{item.MemberGoods}}奖金：{{item.MemberReward}}
+                </div>
+                <div class="listNull" v-if="!tokerList.length">
+                    您还没有拓客信息！
+                </div>
+            </div>
+            <span class="after" @click="isActive(2)"></span>
+        </div>
+        <div class="experienceBox experienceBox2" id="a1" :class="{active : active.active2 }" v-if="!param.level">
             <h2 @click="isActive(2)">
                 <span>填写信息</span>
             </h2>
@@ -165,6 +188,8 @@
     },
     data() {
       return {
+        jfInfo:null,
+        tokerList:[],
         scrollH: 0,
         zIndex: false,
         popupVisible: false,
@@ -174,6 +199,10 @@
           active3: false,
         },
         pickerVisible: '',
+        tokerParam:{
+          token:localStorage.getItem('token'),
+          level: JSON.parse(localStorage.getItem('userInfo')).level
+        },
         param: {
           count: '2',
           sid: '',
@@ -310,6 +339,38 @@
       }
     },
     methods: {
+      leveTxt(val){
+        let text = ''
+        if(val == 6){
+          text = '合伙人'
+        }
+        else if(val == 5){
+          text = '总代'
+        }
+        else if(val == 4){
+          text = '一级代理'
+        }
+        else if(val == 3){
+          text = '团购客户'
+        }
+        else if(val == 1){
+          text = '体验客户'
+        }
+        return text
+      },
+      getJf(){ // 我的积分
+        this.$axios("GetWealthInfo",this.tokerParam).then((res) => {
+          if(res.result){
+            this.jfInfo= res
+          }
+        })
+      },
+      // 拓客信息
+      toker() {
+        this.$axios("GetTeamInfo", this.tokerParam).then((res) => {
+          this.tokerList = res.teaminfo
+        })
+      },
       onValuesChange(picker, values) {
         if (!values[0]) {
           this.$nextTick(() => {
@@ -344,11 +405,7 @@
           this.active.active2 = !this.active.active2
         }
         if (type === 3) {
-          if (this.param.level != 1 || !this.param.level) {
-
-          } else {
             this.active.active3 = !this.active.active3
-          }
         }
       },
       formatDate(date) {
@@ -415,6 +472,12 @@
       }
     },
     mounted() {
+
+      if(this.param.level == 3 || this.param.level == 4 || this.param.level == 5 || this.param.level == 6){
+        this.toker();
+      }else if(this.param.level == 1){
+        this.getJf();
+      }
       this.param.sid = this.$router.history.current.query.sid || localStorage.getItem('sid') || ''
     }
   }
