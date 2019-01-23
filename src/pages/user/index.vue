@@ -3,7 +3,7 @@
         <div class="userBox">
             <div class="userImg" @click="routerPath('/user/info')">
                 <div class="userHead">
-                    <img :src="userInfo.photourl || '../../assets/images/head.png'" />
+                    <img v-if="userInfo.photourl" :src="userInfo.photourl" />
                 </div>
                 <img class="userLogo" src="../../assets/images/user-logo.png" alt="">
                 <router-link to="/login" v-show="!isLogin">
