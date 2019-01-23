@@ -30,6 +30,7 @@
 </template>
 <script>
   import Header from '@/components/common/Header.vue';
+  import { Toast } from 'mint-ui';
   export default {
       name: 'message',
       components:{
@@ -90,10 +91,10 @@
           formData.append('key', 'UploadPhoto')
           this.param.pic = formData
           this.multipart.post("/apitest/", formData).then((res) => {
-            if(res.result){
+            if(res.data.result){
               this.getInit();
             }else{
-              Toast(res.message);
+              Toast(res.data.message);
             }
           })
         }

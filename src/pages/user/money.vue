@@ -41,6 +41,9 @@
                     {{item.news_title + item.news_text}}
                 </li>
             </ul>
+            <div class="listNull" v-if="!popList.length && !isLoading">
+                无分配记录！
+            </div>
         </div>
     </div>
 </template>
@@ -54,17 +57,13 @@
     },
     data () {
       return {
+        isLoading:false,
         popListShow:false,
         info:{},
         popList:[],
         toList:[],
         param:{
           token:localStorage.getItem('token'),
-          name: '',
-          cellphone: '',
-          idnumber: '',
-          number: '',
-          toid: ''
         }
       }
     },
@@ -75,9 +74,11 @@
           token: this.param.token,
           classId: '1'
         }
+        this.isLoading = true
         this.$axios("GetMessages", param).then((res) => {
           if(res.result){
-            this.popList=res.teaminfo
+            this.isLoading = false
+            this.popList=res.Messages
           }
         })
       },
@@ -112,8 +113,7 @@
       // 查询团队用户
       getTeam(){
         this.$axios("GetTeamInfo", this.param).then((res) => {
-          console.log(res)
-          this.toList = res.teaminfo.length ? res.teaminfo.length : [{MemberUID:'',MemberName:'无分配人'}]
+          this.toList = res.teaminfo.length ? res.teaminfo : [{MemberUID:'',MemberName:'无分配人'}]
           this.param.toid = res.teaminfo[0] && res.teaminfo[0].MemberUID
         })
       },
