@@ -10,7 +10,7 @@
                     立即登录
                 </router-link>
                 <div v-show="isLogin" @click="routerPath('/user/info')">
-                    {{userInfo.realname}} <span :style="{width:(userInfo.level * 0.4)+'rem'}"></span>
+                    {{userInfo.realname}} <span :style="{width:(userInfo.level * 0.25)+'rem'}"></span>
                     <p>ID:{{userInfo.UID}}</p>
                 </div>
             </div>

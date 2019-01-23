@@ -386,7 +386,7 @@
           if (res.result) {
             Toast('下单成功!');
             //console.log(`${res.payurl}?orderid=${res.member}&totalprice=${this.param.totalprice}`)
-            window.location.href = `${res.payurl}?orderid=${res.member}&totalprice=${this.param.totalprice}`
+            // window.location.href = `${res.payurl}?orderid=${res.member}&totalprice=${this.param.totalprice}`
           }
         })
       },

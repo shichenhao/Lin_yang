@@ -115,17 +115,18 @@
   background-size: 3rem 2.28rem;
 }
 
-.messageBox {
-  margin: .2rem 0 0;
+.messageBox ,.teamBox{
   background: #fff;
+  border-top:.2rem solid #efefef;
 }
 
 .messageItem {
-  border-top: 1px solid #d5d5d6;
+  border-bottom: 1px solid #d5d5d6;
   line-height: .36rem;
   font-size: .22rem;
   padding: .3rem .3rem .1rem;
   color: #898989;
+  background: #fff;
 }
 
 .messageItem p {
@@ -194,10 +195,10 @@
 .userImg div span {
   margin-bottom: -.04rem;
   color: #eace76;
-  height: .4rem;
+  height: .25rem;
   display: inline-block;
   background: url("../images/score_03.png") repeat-x;
-  background-size: .4rem;
+  background-size: .25rem;
 }
 
 .userImg div p {
@@ -421,11 +422,20 @@
 /*team*/
 
 .teamItem {
-  padding: .48rem .7rem;
+  padding: .38rem .7rem .2rem;
   color: #727171;
   font-size: .3rem;
   line-height: .5rem;
   background: #fff;
+  border-bottom: 1px solid #d5d5d6;
+  position: relative;
+}
+
+.teamItem span{
+  color: #c00;
+  position: absolute;
+  right: .2rem;
+  top: .1rem;
 }
 
 /*收货地址*/
