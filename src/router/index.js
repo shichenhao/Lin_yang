@@ -11,6 +11,7 @@ import Register from '@/pages/register/'
 import Share from '@/pages/share/'
 import Share2 from '@/pages/share/share'
 import User from '@/pages/user/'
+import UserPs from '@/pages/user/pass'
 import UserMessage from '@/pages/user/message'
 import UserInfo from '@/pages/user/info'
 import UserMoney from '@/pages/user/money'
@@ -139,6 +140,14 @@ export default new Router({
       }
     },
     {
+      path: '/user/pass',
+      component: UserPs,
+      meta: {
+        title: '修改密码',
+        navShow: false
+      }
+    },
+    {
       path: '/user/team',
       component: UserTeam,
       meta: {
@@ -150,7 +159,7 @@ export default new Router({
       path: '/user/toker',
       component: UserToker,
       meta: {
-        title: '拓客信息',
+        title: '我的业绩',
         navShow: false
       }
     },

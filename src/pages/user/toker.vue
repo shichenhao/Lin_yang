@@ -1,13 +1,17 @@
 <template>
     <div class="container" style="padding-bottom: 0">
-        <Header title="拓客信息"></Header>
+        <Header title="我的业绩"></Header>
         <div class="teamBox">
+            <select class="select" v-if="false" v-model="level" @change="handleChange">
+                <option :value="item.val" v-for="item in levelList">{{item.html}}</option>
+            </select>
             <div class="teamItem" v-for="item in list" :key="item.MemberUID">
-                推荐人ID：{{item.MemberIntro}}(ID:{{item.MemberUID}}) 代理级别：{{leveTxt(item.MemberLevel)}}<br />
+                推荐人ID：{{item.MemberIntro}}(ID:{{item.MemberUID}})<br>
+                代理级别：{{leveTxt(item.MemberLevel)}}<br />
                 库存：{{item.MemberGoods}}奖金：{{item.MemberReward}}
             </div>
             <div class="listNull" v-if="!list.length && !isLoading">
-                您还没有拓客信息！
+                您还没有业绩！
             </div>
         </div>
     </div>
@@ -21,8 +25,20 @@
       },
       data () {
           return {
+            level:0,
             isLoading:true,
+            levelList:[{
+              val:0,
+              html:'全部'
+            },{
+              val:'1',
+              html:'当月业绩'
+            },{
+              val:'2',
+              html:'历史业绩'
+            }],
             list:[],
+            list2:[],
             param:{
               token:localStorage.getItem('token'),
               level: JSON.parse(localStorage.getItem('userInfo')).level
@@ -30,6 +46,9 @@
           }
       },
       methods:{
+        handleChange(){
+          let val = this.level
+        },
         leveTxt(val){
           let text = ''
           if(val == 6){

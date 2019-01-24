@@ -4,13 +4,14 @@
         <div class="modelBanner">
             <img src="../../assets/images/shopping-banner.png" alt="">
         </div>
-        <div class="shoppingList">
+        <div class="shoppingList shoppingList2">
             <div class="shoppingItem" v-for="order in list">
                 <img :src="order.goodspic">
                 <div class="cartItem">
                     <b>{{order.goodsname}}</b>
                     <p>{{order.goodscomment}}</p>
-                    <span>￥{{order.newprice}}</span>
+                    <span v-if="false">￥{{order.newprice}}</span>
+                    <span>箱</span>
                     <input type="number" class="text" v-model="order.gcount">
                     <i class="shoppingAdd" @click="subOrder(order)"></i>
                 </div>

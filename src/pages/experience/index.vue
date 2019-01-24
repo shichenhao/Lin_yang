@@ -40,15 +40,19 @@
         </div>
         <div class="experienceBox experienceBox2" id="a1" :class="{active : active.active2 }" v-if="param.level == 3 || param.level == 4 || param.level == 5 || param.level == 6">
             <h2 @click="isActive(2)">
-                <span>拓客信息</span>
+                <span>我的业绩</span>
             </h2>
             <div class="teamBox">
+                <select class="select" v-model="level" @change="handleChange">
+                    <option :value="item.val" v-for="item in levelList">{{item.html}}</option>
+                </select>
                 <div class="teamItem" v-for="item in tokerList" :key="item.MemberUID">
-                    推荐人ID：{{item.MemberIntro}}(ID:{{item.MemberUID}}) 代理级别：{{leveTxt(item.MemberLevel)}}<br />
+                    推荐人：{{item.MemberName}} ID:{{item.MemberUID}}<br />
+                    代理级别：{{leveTxt(item.MemberLevel)}}<br />
                     库存：{{item.MemberGoods}}奖金：{{item.MemberReward}}
                 </div>
                 <div class="listNull" v-if="!tokerList.length">
-                    您还没有拓客信息！
+                    您还没有业绩！
                 </div>
             </div>
             <span class="after" @click="isActive(2)"></span>
@@ -188,8 +192,29 @@
     },
     data() {
       return {
+        level:0,
         jfInfo:null,
+        levelList:[{
+          val:0,
+          html:'全部'
+        },{
+          val:1,
+          html:'体验客户'
+        },{
+          val:3,
+          html:'团购客户'
+        },{
+          val:4,
+          html:'一级代理'
+        },{
+          val:5,
+          html:'总代'
+        },{
+          val:6,
+          html:'合伙人'
+        }],
         tokerList:[],
+        tokerList2:[],
         scrollH: 0,
         zIndex: false,
         popupVisible: false,
@@ -201,7 +226,7 @@
         pickerVisible: '',
         tokerParam:{
           token:localStorage.getItem('token'),
-          level: JSON.parse(localStorage.getItem('userInfo')).level
+          level: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).level : 0
         },
         param: {
           count: '2',
@@ -217,7 +242,7 @@
           area: '',
           addr: '',
           orderinfo: "体验装1份",
-          level: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).level : '',
+          level: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).level : 0,
           totalprice: "47.7",
           uid: localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).UID : '',
           feedback: "反馈信息"
@@ -268,11 +293,11 @@
         ],
         count: [
           {
-            label: '1份',
+            label: '1份(47.7)',
             value: '1',
           },
           {
-            label: '2份',
+            label: '2份(95.4)',
             value: '2',
           }
         ],
@@ -339,6 +364,16 @@
       }
     },
     methods: {
+      handleChange(){
+        let val = this.level
+        this.tokerList = this.tokerList2.filter(item=>{
+          if(val === 0){
+            return item
+          } else{
+            return item.MemberLevel == val
+          }
+        })
+      },
       leveTxt(val){
         let text = ''
         if(val == 6){
@@ -369,6 +404,7 @@
       toker() {
         this.$axios("GetTeamInfo", this.tokerParam).then((res) => {
           this.tokerList = res.teaminfo
+          this.tokerList2 = res.teaminfo
         })
       },
       onValuesChange(picker, values) {
@@ -443,7 +479,7 @@
           if (res.result) {
             Toast('下单成功!');
             //console.log(`${res.payurl}?orderid=${res.member}&totalprice=${this.param.totalprice}`)
-            // window.location.href = `${res.payurl}?orderid=${res.member}&totalprice=${this.param.totalprice}`
+            window.location.href = `${res.payurl}?orderid=${res.member}&totalprice=${this.param.totalprice}`
           }
         })
       },

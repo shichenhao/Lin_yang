@@ -11,7 +11,8 @@
                     <div class="cartItem">
                         <b>{{item.goodsname}}</b>
                         <p>{{item.goodscomment || cartInfo.content}}</p>
-                        <span>￥{{item.newprice || cartInfo.price}}</span>
+                        <span v-if="false">￥{{item.newprice || cartInfo.price}}</span>
+                        <span>箱</span>
                         <div class="cartNumber">
                             <i class="shoppingRemove" @click="updateGoods(item,0)"></i>
                             {{item.product_num}}
@@ -20,8 +21,8 @@
                     </div>
                 </div>
                 <div class="cartResult">
-                    应付合计
-                    <b>￥{{price || 0}}</b>
+                    合计:
+                    <b>{{price || 0}} 箱</b>
                     <a @click="setOrder">结算</a>
                 </div>
             </div>
@@ -57,7 +58,8 @@
           let num = null
           this.cartList.forEach(item=>{
             if(item.selected === '1'){
-              num+=(item.newprice * item.product_num).toFixed(2)*1
+              num+=item.product_num*1
+              // num+=(item.newprice * item.product_num).toFixed(2)*1
             }
           })
           return num

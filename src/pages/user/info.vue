@@ -23,6 +23,9 @@
                         注册手机
                         <span>{{userInfo.cellphone}}</span>
                     </li>
+                    <li>
+                        <a class="btn" @click="upPass">修改密码</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -47,6 +50,9 @@
           }
       },
       methods:{
+        upPass(){
+          this.$router.push('/user/pass')
+        },
         leveTxt(val){
           let text = ''
           if(val == 6){

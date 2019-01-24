@@ -215,10 +215,11 @@ table {
 }
 
 .cartNumber {
-  width: 1.4rem;
+  width: 1.8rem;
   line-height: .44rem;
   position: relative;
   text-align: center;
+  padding-right: .2rem;
   font-size: .24rem;
   color: #004940;
 }
@@ -229,7 +230,7 @@ table {
 }
 
 .cartNumber .shoppingRemove {
-  left: 0;
+  left: .1rem;
   right: auto;
 }
 

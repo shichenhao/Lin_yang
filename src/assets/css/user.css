@@ -120,6 +120,13 @@
   border-top:.2rem solid #efefef;
 }
 
+.teamBox .select,.messageBox .select{
+  width: 90%;
+  display: block;
+  height: .8rem;
+  margin: .4rem auto 0;
+}
+
 .messageItem {
   border-bottom: 1px solid #d5d5d6;
   line-height: .36rem;
@@ -214,6 +221,10 @@
 .userNav {
   padding-left: .35rem;
   background: #fff;
+}
+
+.userNav2{
+  padding: 0 .35rem;
 }
 
 .userNav ul li {
@@ -383,6 +394,11 @@
   font-size: .8rem;
   margin-bottom: .2rem;
   border-bottom: .02rem solid #b5b6b6;
+}
+
+.moneyItem p span{
+  font-size: .3rem;
+  color: #666;
 }
 
 .moneyBox2{

@@ -8,10 +8,10 @@
                 <img src="../assets/images/icon-add.png">
                 <div class="indexPop" :class="{indexPopActive : isIndexPop}">
                     <span>
-                        <img src="../assets/images/icon2.png"> 分享加盟
+                        <img src="../assets/images/icon3.png"> 分享加盟
                     </span>
                     <span>
-                        <img src="../assets/images/icon3.png"> 分享体验
+                        <img src="../assets/images/icon2.png"> 分享体验
                     </span>
                 </div>
             </div>

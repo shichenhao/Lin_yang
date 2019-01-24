@@ -7,7 +7,10 @@
                     <span><img src="../../assets/images/money-icon1.png" /></span>
                 </h2>
                 <div class="h2">我的库存</div>
-                <p style="border:0 none">{{ info['库值'] || 0}}</p>
+                <p style="border:0 none">
+                    {{ info['库值'] || 0}}
+                    <span>箱</span>
+                </p>
             </div>
         </div>
         <div class="moneyBox moneyBox2 moneyBox3">
@@ -83,9 +86,6 @@
         },{
           val:5,
           html:'总代'
-        },{
-          val:6,
-          html:'合伙人'
         }],
         param:{
           level:0,
@@ -164,8 +164,9 @@
           console.log(res)
           if(res.result){
             Toast(res.message);
+            this.param.goods = null
             // this.info= res
-            this.$router.push('/user')
+            // this.$router.push('/user')
           }
         })
       },

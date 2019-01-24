@@ -48,11 +48,11 @@
                         我的业绩
                     </li>
                     <li @click="routerPath('/share2')">
-                        <img src="../../assets/images/icon2.png" />
+                        <img src="../../assets/images/icon3.png" />
                         分享加盟
                     </li>
                     <li @click="routerPath('/share')">
-                        <img src="../../assets/images/icon3.png" />
+                        <img src="../../assets/images/icon2.png" />
                         分享体验
                     </li>
                     <li class="lout" v-if="isLogin">

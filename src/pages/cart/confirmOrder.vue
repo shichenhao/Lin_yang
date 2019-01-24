@@ -22,13 +22,12 @@
                             {{item.goodsname}}<br />
                             {{item.goodscomment}}
                         </span>
-                        <span>
-                            x{{item.product_num}}
-                        </span>
-                        <b>￥{{item.newprice * item.product_num}}</b>
+                        <b>
+                            {{item.product_num}} 箱
+                        </b>
                     </div>
                     <div class="orderInfoResult">
-                        合计
+                        合计:
                         <b>￥{{price}}</b>
                     </div>
                 </div>
@@ -38,7 +37,7 @@
                             库存
                             <span>
                                 <img src="./../../assets/images/money-icon1.png" alt="">
-                                {{info['库值']}}
+                                {{info['库值']}}箱
                             </span>
                         </li>
                         <li v-if="false">
@@ -60,8 +59,8 @@
             </div>
         </div>
         <div class="cartResult">
-            应付合计
-            <b>￥{{price}}</b>
+            合计:
+            <b>{{price}} 箱</b>
             <a @click="submit">提交订单</a>
         </div>
         <div class="adsPop" v-if="adsShow">
@@ -146,7 +145,11 @@
             }
             this.$axios("CartOrder", param).then((res) => {
               if(res.result){
-                window.location.href= res.payurl
+                Toast('发货成功!');
+                // window.location.href= res.payurl
+                setTimeout(()=>{
+                  this.$router.push('/')
+                })
               }
             })
 

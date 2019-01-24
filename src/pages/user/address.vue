@@ -9,7 +9,7 @@
                 <span @click="deleteItem(item.address_id)">✖</span>
             </div>
             <div class="listNull" v-if="!list.length && !isLoading">
-                您还没有团队信息！
+                您还没有地址！
             </div>
             <router-link to="/user/address/add">
                 添加地址
