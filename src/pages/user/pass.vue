@@ -5,16 +5,13 @@
             <div class="userNav userNav2">
                 <ul>
                     <li>
-                        <input type="password" v-model="param.oldpass" placeholder="旧密码">
+                        <input type="password" v-model="param.password" placeholder="新密码">
                     </li>
                     <li>
-                        <input type="password" v-model="param.pass" placeholder="新密码">
+                        <input type="password" v-model="param.password2" placeholder="确认密码">
                     </li>
                     <li>
-                        <input type="password" v-model="param.pass2" placeholder="确认密码">
-                    </li>
-                    <li>
-                        <a class="btn">修改密码</a>
+                        <a style="margin-top: .2rem" class="btn" :class="{btnDisabled : !param.password || !param.password2}" @click="upPass">修改密码</a>
                     </li>
                 </ul>
             </div>
@@ -34,22 +31,28 @@
             userInfo:{},
             isLogin:localStorage.getItem('token') || false,
             param:{
-              pass:'',
+              password:'',
               token:localStorage.getItem('token') || ''
             }
           }
       },
       methods:{
         upPass(){
-          this.$axios("GetMemberInfo", this.param).then((res) => {
-            if(res.result){
-              Toast('修改成功')
-              setTimeout(()=>{
-                this.$router.push('/user/info')
-              },500)
-              //this.$router.push('/')
+          if(this.param.password && this.param.password2){
+            if(this.param.password !== this.param.password2){
+              Toast('两次密码输入不一致')
+              return false
             }
-          })
+            this.$axios("UpdatePassword", this.param).then((res) => {
+              if(res.result){
+                Toast('修改成功')
+                setTimeout(()=>{
+                  this.$router.push('/user/info')
+                },500)
+                //this.$router.push('/')
+              }
+            })
+          }
         }
       }
   }

@@ -43,16 +43,8 @@
                 <span>我的业绩</span>
             </h2>
             <div class="teamBox">
-                <select class="select" v-model="level" @change="handleChange">
-                    <option :value="item.val" v-for="item in levelList">{{item.html}}</option>
-                </select>
-                <div class="teamItem" v-for="item in tokerList" :key="item.MemberUID">
-                    推荐人：{{item.MemberName}} ID:{{item.MemberUID}}<br />
-                    代理级别：{{leveTxt(item.MemberLevel)}}<br />
-                    库存：{{item.MemberGoods}}奖金：{{item.MemberReward}}
-                </div>
-                <div class="listNull" v-if="!tokerList.length">
-                    您还没有业绩！
+                <div style="text-align: center;font-size: .3rem">
+                    历史业绩:{{tokerList['历史业绩']}}　当月业绩:{{tokerList['当月业绩']}}
                 </div>
             </div>
             <span class="after" @click="isActive(2)"></span>
@@ -402,9 +394,8 @@
       },
       // 拓客信息
       toker() {
-        this.$axios("GetTeamInfo", this.tokerParam).then((res) => {
-          this.tokerList = res.teaminfo
-          this.tokerList2 = res.teaminfo
+        this.$axios("GetSales", {token:localStorage.getItem('token')}).then((res) => {
+          this.tokerList = res
         })
       },
       onValuesChange(picker, values) {

@@ -69,10 +69,14 @@
               this.list2=res.Messages
             }
           })
+        },
+        getInit(){
+          this.$axios("SetMessagesRead", this.param).then((res) => {})
         }
 
       },
       mounted(){
+        this.getInit();
         this.getList();
       }
   }

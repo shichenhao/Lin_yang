@@ -96,7 +96,7 @@
   background: #005b53;
 }
 
-.login .btnDisabled {
+.login .btnDisabled,.btnDisabled {
   background: #aaa;
 }
 
@@ -545,3 +545,12 @@
   padding: 0 0.3rem;
   border-bottom: 1px solid #ccc;
 }
+
+.myYeji{
+  border-top:.2rem solid #efefef;
+  padding: 1rem 0;
+  text-align: center;
+  font-size: .3rem;
+}
+
+

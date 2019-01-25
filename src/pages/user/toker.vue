@@ -1,18 +1,8 @@
 <template>
     <div class="container" style="padding-bottom: 0">
         <Header title="我的业绩"></Header>
-        <div class="teamBox">
-            <select class="select" v-if="false" v-model="level" @change="handleChange">
-                <option :value="item.val" v-for="item in levelList">{{item.html}}</option>
-            </select>
-            <div class="teamItem" v-for="item in list" :key="item.MemberUID">
-                推荐人ID：{{item.MemberIntro}}(ID:{{item.MemberUID}})<br>
-                代理级别：{{leveTxt(item.MemberLevel)}}<br />
-                库存：{{item.MemberGoods}}奖金：{{item.MemberReward}}
-            </div>
-            <div class="listNull" v-if="!list.length && !isLoading">
-                您还没有业绩！
-            </div>
+        <div class="myYeji">
+            历史业绩:{{list['历史业绩']}}　当月业绩:{{list['当月业绩']}}
         </div>
     </div>
 </template>
@@ -37,7 +27,7 @@
               val:'2',
               html:'历史业绩'
             }],
-            list:[],
+            list:{},
             list2:[],
             param:{
               token:localStorage.getItem('token'),
@@ -70,9 +60,9 @@
         },
         getInit() {
           this.isLoading = true
-          this.$axios("GetTeamInfo", this.param).then((res) => {
+          this.$axios("GetSales", this.param).then((res) => {
             this.isLoading = false
-            this.list = res.teaminfo
+            this.list = res
           })
         },
       },

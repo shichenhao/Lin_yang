@@ -32,6 +32,9 @@
     name: 'index',
     data() {
       return {
+        param:{
+          token: localStorage.getItem('token') || ''
+        },
         selected: '首页',
         msgArr:false
       }
@@ -62,8 +65,20 @@
         }
       }
     },
+    methods:{
+      getMas(){
+        this.$axios("GetMessages", this.param).then((res) => {
+          if(res.result){
+            this.msgArr = res.Messages.some(item=>{
+              return item.read === '0'
+            })
+          }
+        })
+      }
+    },
     created() {
-      this.msgArr = localStorage.getItem('msgArr')
+      this.getMas()
+      // this.msgArr = localStorage.getItem('msgArr')
       if (this.$router.history.current.path === "/user/message") {
         this.selected = '/user/message'
       } else if (this.$router.history.current.path === "/user") {
