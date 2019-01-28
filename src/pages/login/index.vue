@@ -58,7 +58,8 @@
             localStorage.setItem('level', res.level)
             localStorage.setItem('userInfo',JSON.stringify(res))
             //this.$router.push('/')
-            this.$router.push('/')
+            //this.$router.push('/')
+            window.location.href='/'
           }
         })
       },

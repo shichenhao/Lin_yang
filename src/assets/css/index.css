@@ -325,7 +325,7 @@
 }
 
 .experienceBox2{
-  padding: .24rem .45rem;
+  padding: .24rem .32rem;
 }
 
 .experienceBox {
@@ -446,6 +446,10 @@
   align-items: center;
 }
 
+.experienceCont ul li span{
+  white-space: nowrap;
+}
+
 .experienceCont ul li font {
   padding-left: .4rem;
   color: #999;
@@ -466,7 +470,6 @@
 }
 
 .checkboxList {
-  margin-left: -20px;
 }
 
 .experienceAgreement {
@@ -699,6 +702,10 @@
 
 }
 
-.checkboxList2 .mint-radiolist-label{
-  font-size: .2rem;
+.checkboxList2 .mint-radiolist-label,.containers .mint-radio-label{
+  font-size: .34rem;
+}
+
+.mint-cell-wrapper{
+  padding-left: 0.1rem;
 }

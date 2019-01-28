@@ -55,6 +55,14 @@
                         <img src="../../assets/images/icon2.png" />
                         分享体验
                     </li>
+                    <li @click="appDown(1)" v-if="!isIos">
+                        <img src="../../assets/images/down.jpg" />
+                        APP下载
+                    </li>
+                    <li @click="appDown(2)" v-if="isIos">
+                        <img src="../../assets/images/down.jpg" />
+                        APP下载
+                    </li>
                     <li class="lout" v-if="isLogin">
                         <a class="btn" @click="lout">退出登录</a>
                     </li>
@@ -77,6 +85,7 @@
       },
       data () {
           return {
+            isIos:false,
             userInfo:{},
             isLogin:localStorage.getItem('token') || false,
             param:{
@@ -86,6 +95,13 @@
           }
       },
       methods:{
+        appDown(type){
+          if(type === 1){
+            window.location.href='https://www.knlql.com/s7/download/linji-release-v1.0.apk'
+          }else{
+            window.location.href='https://www.knlql.com/s7/download/ios%e5%ae%89%e8%a3%85%e6%96%b9%e6%b3%95.docx'
+          }
+        },
         lout(){
           localStorage.clear();
           this.$router.push('/')
@@ -109,6 +125,12 @@
       mounted(){
         if(this.isLogin){
           this.getInit();
+        }
+        var ua = navigator.userAgent
+        if(ua.indexOf("Android") > -1){
+          this.isIos = false
+        } else if(ua.indexOf('Mac') > -1){
+          this.isIos = true
         }
       }
   }

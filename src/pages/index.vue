@@ -4,13 +4,13 @@
             <div class="indexLeft" @click="goLogin">
                 <img src="../assets/images/icon1.png"> {{loginName}}
             </div>
-            <div class="indexRight" @click="isIndexPop = !isIndexPop">
+            <div class="indexRight" @click="isIndexPop = !isIndexPop" v-if="isLogin && isApp">
                 <img src="../assets/images/icon-add.png">
                 <div class="indexPop" :class="{indexPopActive : isIndexPop}">
-                    <span>
+                    <span @click="share(2)">
                         <img src="../assets/images/icon3.png"> 分享加盟
                     </span>
-                    <span>
+                    <span @click="share(1)">
                         <img src="../assets/images/icon2.png"> 分享体验
                     </span>
                 </div>
@@ -46,13 +46,18 @@
   import bannerImg2 from './../assets/images/index-banner2.jpg'
   import bannerImg3 from './../assets/images/index-banner3.png'
   import bannerImg4 from './../assets/images/index-banner4.jpg'
+
   export default {
     name: 'index',
     data () {
       return {
         loginName: '登录',
         isIndexPop: false,
+        isApp: false,
         isLogin:localStorage.getItem('token') || false,
+        param:{
+          token:localStorage.getItem('token') || ''
+        },
         selected:'首页',
           // 广告图
           bannerUrl: [
@@ -77,6 +82,24 @@
       }
     },
     methods:{
+      share(type){
+        if(type === 1){
+          this.$axios("GetTryCode", this.param).then((res) => {
+            this.shareWx(res.qrcode)
+          })
+        }else{
+          this.$axios("GetQRCode", this.param).then((res) => {
+            this.shareWx(res.qrcode)
+          })
+        }
+      },
+      shareWx(imgSrc){
+        $Umshare.shareImgUrl(imgSrc, function(res){
+          console.log(res);
+        },function(res){
+          console.log(res);
+        });
+      },
       goPath(path){
         let level = localStorage.getItem("userInfo") && JSON.parse(localStorage.getItem("userInfo")).level
         console.log(level)
@@ -98,9 +121,21 @@
       }
     },
     created(){
-      localStorage.setItem('sid', this.$router.history.current.query.sid || localStorage.getItem('sid') || '')
+      // localStorage.setItem('sid', this.$router.history.current.query.sid || localStorage.getItem('sid') || '')
       // localStorage.setItem('level', this.$router.history.current.query.level || localStorage.getItem('level') || 4)
       this.loginName = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).realname : '登录'
+      var ua = navigator.userAgent
+      if(ua.indexOf("x5webviewDreamsoft_WJ") != -1){
+        this.isApp = true
+        const s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.src = '../util/cordova.js';
+        document.body.appendChild(s);
+        document.addEventListener('deviceready',onDeviceReady, false);
+        function onDeviceReady(){
+          console.log('ok')
+        }
+      }
     }
   }
 </script>

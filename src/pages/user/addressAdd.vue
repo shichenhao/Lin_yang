@@ -6,7 +6,7 @@
             <input type="text" v-model="param.phone" placeholder="收货手机号">
             <div class="inputText" @click="popupVisible = true">{{param.ssq || '收货地址省市区'}}</div>
             <input type="text" v-model="param.addr" placeholder="收货人地址">
-            <span class="btn" v-if="noId" @click="add(true)">添加并到转到购物车</span>
+            <span class="btn" v-if="noId" @click="add(true)">添加</span>
             <span class="btn" v-else @click="add(false)">添加</span>
         </div>
         <mt-popup
@@ -108,7 +108,7 @@
             if(res.result){
               this.Toast(res.message)
               if(type){
-                this.$router.push('/cart')
+                this.$router.push('/cart/order')
               }else{
                 this.$router.go(-1);
               }

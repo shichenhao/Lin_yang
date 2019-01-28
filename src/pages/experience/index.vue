@@ -42,7 +42,7 @@
             <h2 @click="isActive(2)">
                 <span>我的业绩</span>
             </h2>
-            <div class="teamBox">
+            <div class="teamBox" style="border: 0 none;padding-top:.2rem">
                 <div style="text-align: center;font-size: .3rem">
                     历史业绩:{{tokerList['历史业绩']}}　当月业绩:{{tokerList['当月业绩']}}
                 </div>
@@ -285,11 +285,11 @@
         ],
         count: [
           {
-            label: '1份(47.7)',
+            label: '1份(47.7元)',
             value: '1',
           },
           {
-            label: '2份(95.4)',
+            label: '2份(95.4元)',
             value: '2',
           }
         ],
@@ -451,6 +451,10 @@
         if (!this.param.name || !this.param.bathday || !this.param.cellphone || !this.param.gender || !this.param.address2 || !this.param.ssq) {
           return false
         }
+        if(!this.param.sid){
+          Toast('请联系推荐人，确认体验码正确')
+          return false
+        }
         if (!this.param.name || !this.param.bathday || !this.param.cellphone || !this.param.gender || !this.param.address2 || !this.param.ssq) {
           Toast('请填写个人信息!');
           return false
@@ -498,14 +502,14 @@
         document.documentElement.scrollTop = this.scrollH
       }
     },
-    mounted() {
+    created() {
 
       if(this.param.level == 3 || this.param.level == 4 || this.param.level == 5 || this.param.level == 6){
         this.toker();
       }else if(this.param.level == 1){
         this.getJf();
       }
-      this.param.sid = this.$router.history.current.query.sid || localStorage.getItem('sid') || ''
+      this.param.sid = this.$route.query && this.$route.query.sid || localStorage.getItem('sid') || ''
     }
   }
 </script>

@@ -119,7 +119,15 @@
             })){
             localStorage.setItem('car', JSON.stringify(this.cartList))
             localStorage.setItem('carPrice', this.price)
-            this.$router.push('/cart/order')
+
+            this.$axios("GetAddress", this.param).then((res) => {
+              if(res.address.length){
+                this.$router.push('/cart/order')
+              }else{
+                this.$router.push('/user/address/add?noId=true')
+              }
+            })
+
           }else{
             Toast('请选择要结算的商品');
             return false

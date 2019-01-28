@@ -77,7 +77,9 @@
       }
     },
     created() {
-      this.getMas()
+      if(localStorage.getItem('token')){
+        this.getMas()
+      }
       // this.msgArr = localStorage.getItem('msgArr')
       if (this.$router.history.current.path === "/user/message") {
         this.selected = '/user/message'

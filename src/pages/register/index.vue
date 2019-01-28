@@ -161,6 +161,7 @@
       this.level = this.$route.query.level || localStorage.getItem('level') && JSON.parse(localStorage.getItem('level'))
       this.levelList = this.levelList.filter(item=> item.val <= this.level)
       this.param.level = this.level
+      this.param.sid = this.$route.query && this.$route.query.sid
     }
   }
 </script>
