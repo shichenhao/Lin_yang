@@ -121,6 +121,12 @@
       }
     },
     created(){
+
+      console.log(this.$route.query)
+      if(this.$route.query.level){
+        localStorage.setItem('level', this.$route.query.level)
+        localStorage.setItem('sid', this.$route.query.id)
+      }
       // localStorage.setItem('sid', this.$router.history.current.query.sid || localStorage.getItem('sid') || '')
       // localStorage.setItem('level', this.$router.history.current.query.level || localStorage.getItem('level') || 4)
       this.loginName = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).realname : '登录'

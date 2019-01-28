@@ -158,10 +158,10 @@
         this.param.level =  0
       }*/
       console.log(this.$route.query)
-      this.level = this.$route.query.level || localStorage.getItem('level') && JSON.parse(localStorage.getItem('level'))
+      this.level = this.$route.query.level || localStorage.getItem('level') || '3'
       this.levelList = this.levelList.filter(item=> item.val <= this.level)
       this.param.level = this.level
-      this.param.sid = this.$route.query && this.$route.query.sid
+      this.param.sid =  this.$route.query.sid || localStorage.getItem('sid') || ''
     }
   }
 </script>
