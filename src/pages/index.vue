@@ -120,21 +120,13 @@
         }
       }
     },
-    created(){
+    mounted(){
       // localStorage.setItem('sid', this.$router.history.current.query.sid || localStorage.getItem('sid') || '')
       // localStorage.setItem('level', this.$router.history.current.query.level || localStorage.getItem('level') || 4)
       this.loginName = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).realname : '登录'
       var ua = navigator.userAgent
-      if(ua.indexOf("x5webviewDreamsoft_WJ") != -1){
+      if(ua.indexOf("x5webview") > -1){
         this.isApp = true
-        const s = document.createElement('script');
-        s.type = 'text/javascript';
-        s.src = '../util/cordova.js';
-        document.body.appendChild(s);
-        document.addEventListener('deviceready',onDeviceReady, false);
-        function onDeviceReady(){
-          console.log('ok')
-        }
       }
     }
   }

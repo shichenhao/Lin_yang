@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0"/>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
@@ -14,8 +14,22 @@
     <!--适用于非 Retina 屏的 iPhone-->
     <link rel="apple-touch-icon-precomposed" href="./static/ios.png">
     <title>首页</title>
-  </head>
-  <body>
-    <div id="app"></div>
-  </body>
+</head>
+<body>
+<div id="app"></div>
+</body>
+<script>
+  var ua = navigator.userAgent
+  alert(ua)
+  if (ua.indexOf("x5webview") > -1) {
+    const s = document.createElement('script')
+    s.type = 'text/javascript'
+    s.src = './static/cordova.js'
+    document.body.appendChild(s)
+    document.addEventListener('deviceready',onDeviceReady, false);
+    function onDeviceReady(){
+      console.log('ok')
+    }
+  }
+</script>
 </html>

@@ -37,6 +37,10 @@
       mounted(){
         this.getCode();
         var ua = navigator.userAgent
+        if(ua.indexOf("x5webview") > -1){
+          this.isApp = true
+        }
+        /*var ua = navigator.userAgent
         if(ua.indexOf("x5webviewDreamsoft_WJ") != -1){
           this.isApp = true
           const s = document.createElement('script');
@@ -47,7 +51,7 @@
           function onDeviceReady(){
             console.log('ok')
           }
-        }
+        }*/
       }
   }
 </script>
