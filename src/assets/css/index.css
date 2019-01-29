@@ -709,3 +709,21 @@
 .mint-cell-wrapper{
   padding-left: 0.1rem;
 }
+
+.xinBox{
+  position: absolute;
+  top:0;
+  left:0;
+  right: 0;
+  background: #fff;
+  padding-bottom: .2rem;
+}
+
+.xinBox img{
+  width: 100%;
+}
+
+.xinBox .btn{
+  width: 90%;
+  margin: .2rem auto;
+}

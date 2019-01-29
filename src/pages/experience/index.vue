@@ -169,6 +169,10 @@
             <span class="addPop" @click="checkAddrs">确定</span>
             <mt-picker v-if="popupVisible" :slots="slots" valueKey="label" @change="onValuesChange"></mt-picker>
         </mt-popup>
+        <div class="xinBox" v-if="!param.level && !isXin">
+            <img src="../../assets/images/xin.png" alt="">
+            <span @click="goTop" class="btn">参加体验</span>
+        </div>
     </div>
 </template>
 <script>
@@ -184,6 +188,7 @@
     },
     data() {
       return {
+        isXin:false,
         level:0,
         jfInfo:null,
         levelList:[{
@@ -356,6 +361,10 @@
       }
     },
     methods: {
+      goTop(){
+        this.isXin = true
+        document.documentElement.querySelector('.containers').scrollTop = 0
+      },
       handleChange(){
         let val = this.level
         this.tokerList = this.tokerList2.filter(item=>{
