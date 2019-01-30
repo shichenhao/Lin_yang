@@ -59,7 +59,7 @@
             localStorage.setItem('userInfo',JSON.stringify(res))
             //this.$router.push('/')
             //this.$router.push('/')
-            window.location.href='../'
+            window.location.href='/api/'
           }
         })
       },

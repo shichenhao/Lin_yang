@@ -49,7 +49,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="agreement">
+                <div class="agreement" v-if="false">
                     <i class="choice">
                         <input type="checkbox" v-model="isRadio" id="radio">
                         <label for="radio"></label>
@@ -91,7 +91,7 @@
       data () {
           return {
             adsShow:false,
-            isRadio:false,
+            isRadio:true,
             list:[],
             addList:[],
             info:{},

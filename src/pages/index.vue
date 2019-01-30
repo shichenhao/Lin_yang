@@ -131,7 +131,7 @@
       this.loginName = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')).realname : '登录'
       var ua = navigator.userAgent
       if(ua.indexOf("x5webview") > -1){
-        this.isApp = true
+        // this.isApp = true
       }
     }
   }

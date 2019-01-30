@@ -38,7 +38,7 @@
         this.getCode();
         var ua = navigator.userAgent
         if(ua.indexOf("x5webview") > -1){
-          this.isApp = true
+          // this.isApp = true
         }
         /*var ua = navigator.userAgent
         if(ua.indexOf("x5webviewDreamsoft_WJ") != -1){
